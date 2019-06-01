@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="474.0" maxWidth="440.0" minHeight="399.0" minWidth="196.0" prefHeight="440.0" prefWidth="410.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RegisterContoller">
+    <children>
+        <TextField fx:id="registerName" layoutX="123.0" layoutY="14.0" prefHeight="42.0" prefWidth="165.0" promptText="Imie" />
+        <Button fx:id="registerButton" layoutX="169.0" layoutY="352.0" mnemonicParsing="false" onAction="#RegisterButton" text="Rejestracja" />
+      <TextField fx:id="registerSurname" layoutX="123.0" layoutY="70.0" prefHeight="42.0" prefWidth="165.0" promptText="Nazwisko" />
+      <TextField fx:id="registerCivilianID" layoutX="123.0" layoutY="124.0" prefHeight="42.0" prefWidth="165.0" promptText="pesel" />
+      <Label fx:id="registerLabel" layoutX="97.0" layoutY="226.0" prefHeight="25.0" prefWidth="101.0" />
+      <PasswordField fx:id="registerPass" layoutX="123.0" layoutY="293.0" prefHeight="42.0" prefWidth="165.0" promptText="hasło" />
+      <TextField fx:id="registerLogin" layoutX="123.0" layoutY="239.0" prefHeight="42.0" prefWidth="165.0" promptText="Login" />
+      <TextField fx:id="registerEvidenceNr" layoutX="123.0" layoutY="184.0" prefHeight="42.0" prefWidth="165.0" promptText="Numer Dowodu Osobistego" />
+      <Label fx:id="registerInfo" layoutX="142.0" layoutY="384.0" prefHeight="42.0" prefWidth="230.0" />
+    </children>
+</AnchorPane>
