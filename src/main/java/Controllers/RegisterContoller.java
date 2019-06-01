@@ -54,6 +54,7 @@ public class RegisterContoller {
 			session.getTransaction().commit();
 			registerInfo.setText("Zarejestrowano pomyslnie");
 		} catch (HibernateException e) {
+			registerInfo.setText("Login zajety, sprobuj inny");
 			e.printStackTrace();
 		}
 

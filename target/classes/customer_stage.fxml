@@ -17,8 +17,9 @@
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="185.0" layoutY="14.0" prefHeight="44.0" prefWidth="231.0" text="Witaj w hotelu, &lt;imie&gt;." />
+                        <Label layoutX="167.0" layoutY="14.0" prefHeight="50.0" prefWidth="37.0" text="Witaj " />
                         <DatePicker layoutX="14.0" layoutY="94.0" prefHeight="33.0" prefWidth="174.0" />
+                        <Label layoutX="204.0" layoutY="14.0" prefHeight="50.0" prefWidth="92.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -29,15 +30,16 @@
                      <children>
                         <TextField layoutX="14.0" layoutY="71.0" prefHeight="25.0" prefWidth="149.0" promptText="Imie" />
                         <TextField layoutX="14.0" layoutY="106.0" prefHeight="25.0" prefWidth="149.0" promptText="Nazwisko" />
-                        <Button layoutX="64.0" layoutY="186.0" mnemonicParsing="false" text="Zmień" />
+                        <Button layoutX="65.0" layoutY="320.0" mnemonicParsing="false" text="Zmień" />
                         <Label layoutX="15.0" layoutY="41.0" prefHeight="17.0" prefWidth="147.0" text="Zmień swoje dane:" />
                         <PasswordField layoutX="15.0" layoutY="142.0" promptText="hasło" />
                         <Button layoutX="508.0" layoutY="332.0" mnemonicParsing="false" text="Usuń konto" />
                         <Label layoutX="201.0" layoutY="41.0" prefHeight="17.0" prefWidth="166.0" text="Zmień swój adres:" />
                         <TextField layoutX="201.0" layoutY="71.0" prefHeight="25.0" prefWidth="149.0" promptText="Miasto" />
                         <TextField layoutX="201.0" layoutY="106.0" promptText="Ulica" />
-                        <TextField layoutX="201.0" layoutY="142.0" promptText="telefon" />
+                        <TextField layoutX="201.0" layoutY="142.0" promptText="Numer mieszkania" />
                         <Button layoutX="250.0" layoutY="186.0" mnemonicParsing="false" text="Zmień" />
+                        <TextField layoutX="16.0" layoutY="174.0" promptText="Numer dowodu" />
                      </children>
                   </AnchorPane>
             </content>

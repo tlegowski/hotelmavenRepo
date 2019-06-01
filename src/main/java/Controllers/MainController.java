@@ -13,8 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 import java.io.IOException;
 
@@ -41,7 +39,13 @@ public class MainController {
 			User user = session.byNaturalId(User.class).using("login", log).load();
 			if (user != null) {
 				if (user.getPassword().equals(pass)) {
-					labeltxt.setText("Zalogowano");
+					Stage registerStage = new Stage();
+					registerStage.initModality(Modality.APPLICATION_MODAL);
+					Parent root = FXMLLoader.load(getClass().getResource("/customer_stage.fxml"));
+					registerStage.setTitle("Hotel");
+					registerStage.setScene(new Scene(root, 600, 400));
+					registerStage.setResizable(false);
+					registerStage.showAndWait();
 				}else{
 					labeltxt.setText("Zle haslo");
 				}
