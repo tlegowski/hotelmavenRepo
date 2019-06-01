@@ -3,16 +3,16 @@ package Model;
 import javax.persistence.*;
 
 @Entity
-public class Room_type_has_room {
+public class Reservation_has_user {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "room")
-	private Room idRoom;
+	@JoinColumn(name = "reservation")
+	private Reservation idReservation;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "room_type")
-	private Room_type idRoomType;
+	@JoinColumn(name = "customer")
+	private User idUser;
 }

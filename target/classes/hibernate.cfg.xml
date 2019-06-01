@@ -19,6 +19,16 @@
 
         <mapping class="Model.User"/>
         <mapping class="Model.Address"/>
+        <mapping class="Model.Opinion"/>
+        <mapping class="Model.Report"/>
+        <mapping class="Model.Room"/>
+        <mapping class="Model.Room_type"/>
+        <mapping class="Model.Reservation"/>
+        <mapping class="Model.Room_type_has_room"/>
+        <mapping class="Model.Reservation_has_user"/>
+        <mapping class="Model.Reservation_has_room"/>
+
+
 
 
 
