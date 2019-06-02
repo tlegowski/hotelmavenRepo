@@ -47,6 +47,7 @@
                         <Button fx:id="changeAddressButton" layoutX="251.0" layoutY="230.0" mnemonicParsing="false" text="Zmień" />
                         <TextField fx:id="settingEvidenceNr" layoutX="16.0" layoutY="174.0" promptText="Numer dowodu" />
                         <Label fx:id="infoNameChange" layoutX="16.0" layoutY="275.0" prefHeight="36.0" prefWidth="150.0" text=" " />
+                        <Label fx:id="infoAddressChange" layoutX="209.0" layoutY="278.0" prefHeight="31.0" prefWidth="217.0" text=" " />
                      </children>
                   </AnchorPane>
             </content>

@@ -1,9 +1,6 @@
 package Controllers;
 
-import Model.Main;
-import Model.Opinion;
-import Model.User;
-import Model.UserType;
+import Model.*;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -62,6 +59,10 @@ public class CustomerController implements Initializable {
 	@FXML
 	private Label infoNameChange;
 
+	@FXML
+	private Label infoAddressChange;
+
+
 
 	private User customer;
 
@@ -104,7 +105,28 @@ public class CustomerController implements Initializable {
 	}
 
 	public void ChangeAddress(){
+		Address address = customer.getIdAddress();
+		Session session = Main.sessionFactory.openSession();
+		session.beginTransaction();
+		try{
+			address.setCity(settingCity.getText());
+			address.setStreet(settingStreet.getText());
+			try {
+				address.setApartment(Integer.parseInt(settingApartment.getText()));
+			}catch(NumberFormatException e){
+				infoAddressChange.setText("Numer mieszkania musi byc liczba");
+				e.printStackTrace();
+				return;
+			}
+			session.update(address);
+			session.getTransaction().commit();
+			infoAddressChange.setText("Zmieniono adres");
 
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
 	}
 /*	public void SaveOpinion() {
 		Session session = Main.sessionFactory.getCurrentSession();

@@ -15,7 +15,7 @@ public class Address {
 	private String street;
 
 	@Column
-	private Integer apartment;
+	private int apartment;
 
 	public Address() {
 	}
