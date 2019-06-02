@@ -12,11 +12,9 @@ public class Room_type {
 	@Column(name = "ROOM_TYPE_ID")
 	private int roomTypeID;
 
-	@Column
-	private int floor;
 
 	@Column
-	private String view;
+	private String describe;
 
 	@ManyToMany(cascade = {
 			CascadeType.PERSIST,

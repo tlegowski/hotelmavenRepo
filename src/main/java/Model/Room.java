@@ -19,8 +19,5 @@ public class Room {
 	private String describe;
 
 	@ManyToMany(mappedBy = "rooms")
-	private List<Reservation> reservations = new ArrayList<>();
-
-	@ManyToMany(mappedBy = "rooms")
 	private List<Room_type> room_types = new ArrayList<>();
 }

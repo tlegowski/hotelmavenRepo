@@ -36,6 +36,9 @@ public class User implements Serializable {
 	@JoinColumn(name = "id_address")
 	private Address idAddress;
 
+	@ManyToMany(mappedBy = "users")
+	private List<Opinion> opinions = new ArrayList<>();
+
 	@Column
 	@Enumerated(EnumType.STRING)
 	private UserType userType;
@@ -45,9 +48,6 @@ public class User implements Serializable {
 
 	@Column
 	private String evidenceNr;
-
-	@ManyToMany(mappedBy = "users")
-	private List<Reservation> reservations = new ArrayList<>();
 
 	public User(String login, String password, String name, String surname, Address idAddress, UserType userType, String civilianID, String evidenceNr) {
 		this.login = login;

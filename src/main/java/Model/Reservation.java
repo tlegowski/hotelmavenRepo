@@ -21,29 +21,14 @@ public class Reservation {
 	@Column
 	private LocalDate date;
 
-	@ManyToMany(cascade = {
-			CascadeType.PERSIST,
-			CascadeType.MERGE
-	})
-	@JoinTable(name = "reservation_has_users",
-		joinColumns = {@JoinColumn(name = "fk_reservation")},
-		inverseJoinColumns = {@JoinColumn(name = "fk_user")})
-	private List<User> users = new ArrayList<>();
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "customerID")
+	private User customer;
 
-	@ManyToMany(cascade = {
-			CascadeType.PERSIST,
-			CascadeType.MERGE
-	})
-	@JoinTable(name = "reservation_has_room",
-			joinColumns = {@JoinColumn(name = "fk_reservation")},
-			inverseJoinColumns = {@JoinColumn(name = "fk_room")})
-	private List<Room> rooms = new ArrayList<>();
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "employeeID")
+	private User employee;
 
-	/*	@ManyToMany
-		@JoinTable(name = "reservation_has_user",
-			joinColumns = {@JoinColumn(name = "fk_reservation")},
-				inverseJoinColumns = {@JoinColumn(name = "fk_user")})
-		private List<User> users = new ArrayList<User>();*/
 
 	public Reservation(){}
 //LocaldDate costam = LocalDate.of(2014, Month.JANUARY, 1);
