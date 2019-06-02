@@ -36,6 +36,7 @@ public class MainController {
 			String pass = passwordtxt.getText();
 
 			User user = session.byNaturalId(User.class).using("login", log).load();
+			session.close();
 			if (user != null) {
 				if (user.getPassword().equals(pass) && user.getUserType().equals(UserType.CUSTOMER)) {
 
@@ -63,7 +64,11 @@ public class MainController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		session.getTransaction().commit();
+		finally {
+			session.getTransaction().commit();
+			session.close();
+		}
+
 
 	}
 

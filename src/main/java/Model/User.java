@@ -134,4 +134,12 @@ public class User implements Serializable {
 	public void setEvidenceNr(String evidenceNr) {
 		this.evidenceNr = evidenceNr;
 	}
+
+	public List<Opinion> getOpinions() {
+		return opinions;
+	}
+
+	public void setOpinions(List<Opinion> opinions) {
+		this.opinions = opinions;
+	}
 }

@@ -23,4 +23,24 @@ public class Opinion {
 			joinColumns = {@JoinColumn(name = "fk_opinion")},
 			inverseJoinColumns = {@JoinColumn(name = "fk_user")})
 	private List<User> users = new ArrayList<>();
+
+	public String getOpinion() {
+		return opinion;
+	}
+
+	public void setOpinion(String opinion) {
+		this.opinion = opinion;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Opinion(String opinion) {
+		this.opinion = opinion;
+	}
 }

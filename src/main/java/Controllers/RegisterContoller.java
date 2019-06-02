@@ -46,7 +46,6 @@ public class RegisterContoller {
 		session.beginTransaction();
 
 		try {
-
 			User user = new User
 					(registerLogin.getText(), registerPass.getText(), registerName.getText(), registerSurname.getText(), null, UserType.CUSTOMER, registerCivilianID.getText(), registerEvidenceNr.getText());
 
