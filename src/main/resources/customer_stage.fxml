@@ -4,27 +4,29 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CustomerController">
+<AnchorPane prefHeight="388.0" prefWidth="431.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CustomerController">
    <children>
-      <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="400.0" prefWidth="433.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Start">
                <content>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                  <AnchorPane prefHeight="362.0" prefWidth="404.0">
                      <children>
                         <Label layoutX="14.0" prefHeight="50.0" prefWidth="37.0" text="Witaj " />
-                        <DatePicker layoutX="14.0" layoutY="153.0" prefHeight="33.0" prefWidth="174.0" />
+                        <DatePicker fx:id="datePicker" layoutX="15.0" layoutY="106.0" prefHeight="33.0" prefWidth="174.0" />
                         <Label layoutX="55.0" prefHeight="50.0" prefWidth="92.0" />
-                        <Label layoutX="33.0" layoutY="110.0" prefHeight="34.0" prefWidth="163.0" text="Wybierz date rezerwacji:" />
-                        <Button layoutX="202.0" layoutY="157.0" mnemonicParsing="false" text="Sprawdz dostepnosc" />
-                        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="386.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label layoutX="19.0" layoutY="199.0" prefHeight="46.0" prefWidth="169.0" text="Label" />
+                        <Label layoutX="20.0" layoutY="72.0" prefHeight="34.0" prefWidth="163.0" text="Wybierz date rezerwacji:" />
+                        <Button fx:id="checkReservationButton" layoutX="200.0" layoutY="110.0" mnemonicParsing="false" text="Sprawdz dostepnosc" />
+                        <Label layoutX="18.0" layoutY="146.0" prefHeight="46.0" prefWidth="169.0" text="Label" />
+                        <Label layoutX="288.0" layoutY="246.0" prefHeight="28.0" prefWidth="123.0" text="Nie zapomnij ocenić:" />
+                        <Slider fx:id="sliderOpinion" blockIncrement="1.0" layoutX="279.0" layoutY="281.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" prefHeight="35.0" prefWidth="140.0" showTickLabels="true" showTickMarks="true" value="1.0" />
+                        <Button fx:id="sendOpinionButton" layoutX="326.0" layoutY="332.0" mnemonicParsing="false" onAction="#show" text="Wyslij" />
                      </children>
                   </AnchorPane>
                </content>
@@ -33,18 +35,17 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField layoutX="14.0" layoutY="71.0" prefHeight="25.0" prefWidth="149.0" promptText="Imie" />
-                        <TextField layoutX="14.0" layoutY="106.0" prefHeight="25.0" prefWidth="149.0" promptText="Nazwisko" />
-                        <Button layoutX="64.0" layoutY="230.0" mnemonicParsing="false" text="Zmień" />
+                        <TextField fx:id="settingName" layoutX="14.0" layoutY="71.0" prefHeight="25.0" prefWidth="149.0" promptText="Imie" />
+                        <TextField fx:id="settingSurname" layoutX="14.0" layoutY="106.0" prefHeight="25.0" prefWidth="149.0" promptText="Nazwisko" />
+                        <Button fx:id="changeNameButton" layoutX="64.0" layoutY="230.0" mnemonicParsing="false" text="Zmień" />
                         <Label layoutX="15.0" layoutY="41.0" prefHeight="17.0" prefWidth="147.0" text="Zmień swoje dane:" />
-                        <PasswordField layoutX="15.0" layoutY="142.0" promptText="hasło" />
-                        <Button layoutX="508.0" layoutY="332.0" mnemonicParsing="false" text="Usuń konto" />
+                        <PasswordField fx:id="settingPassword" layoutX="15.0" layoutY="142.0" promptText="hasło" />
                         <Label layoutX="201.0" layoutY="41.0" prefHeight="17.0" prefWidth="166.0" text="Zmień swój adres:" />
-                        <TextField layoutX="201.0" layoutY="71.0" prefHeight="25.0" prefWidth="149.0" promptText="Miasto" />
-                        <TextField layoutX="201.0" layoutY="106.0" promptText="Ulica" />
-                        <TextField layoutX="201.0" layoutY="142.0" promptText="Numer mieszkania" />
-                        <Button layoutX="251.0" layoutY="230.0" mnemonicParsing="false" text="Zmień" />
-                        <TextField layoutX="16.0" layoutY="174.0" promptText="Numer dowodu" />
+                        <TextField fx:id="settingCity" layoutX="201.0" layoutY="71.0" prefHeight="25.0" prefWidth="149.0" promptText="Miasto" />
+                        <TextField fx:id="settingStreet" layoutX="201.0" layoutY="106.0" promptText="Ulica" />
+                        <TextField fx:id="settingApartment" layoutX="201.0" layoutY="142.0" promptText="Numer mieszkania" />
+                        <Button fx:id="changeAddressButton" layoutX="251.0" layoutY="230.0" mnemonicParsing="false" text="Zmień" />
+                        <TextField fx:id="settingEvidenceNr" layoutX="16.0" layoutY="174.0" promptText="Numer dowodu" />
                      </children>
                   </AnchorPane>
             </content>

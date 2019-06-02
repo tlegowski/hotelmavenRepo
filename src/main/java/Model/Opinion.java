@@ -13,7 +13,7 @@ public class Opinion {
 	private int id;
 
 	@Column
-	private int opinion;
+	private String opinion;
 
 	@ManyToMany(cascade = {
 			CascadeType.PERSIST,

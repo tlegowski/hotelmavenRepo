@@ -44,7 +44,7 @@ public class MainController {
 					registerStage.initModality(Modality.APPLICATION_MODAL);
 					Parent root = FXMLLoader.load(getClass().getResource("/customer_stage.fxml"));
 					registerStage.setTitle("Hotel");
-					registerStage.setScene(new Scene(root, 600, 400));
+					registerStage.setScene(new Scene(root, 433, 400));
 					registerStage.setResizable(false);
 					registerStage.showAndWait();
 				}else{
