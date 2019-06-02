@@ -15,8 +15,6 @@
         <property name="hbm2ddl.auto">create</property>
 
 
-
-
         <mapping class="Model.User"/>
         <mapping class="Model.Address"/>
         <mapping class="Model.Opinion"/>

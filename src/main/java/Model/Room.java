@@ -20,4 +20,46 @@ public class Room {
 
 	@ManyToMany(mappedBy = "rooms")
 	private List<Room_type> room_types = new ArrayList<>();
+
+	@Override
+	public String toString() {
+		return "Room{" +
+				"id=" + id +
+				", number=" + number +
+				", describe='" + describe + '\'' +
+				", room_types=" + room_types +
+				'}';
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
+	public String getDescribe() {
+		return describe;
+	}
+
+	public void setDescribe(String describe) {
+		this.describe = describe;
+	}
+
+	public List<Room_type> getRoom_types() {
+		return room_types;
+	}
+
+	public void setRoom_types(List<Room_type> room_types) {
+		this.room_types = room_types;
+	}
 }

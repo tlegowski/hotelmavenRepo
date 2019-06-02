@@ -7,9 +7,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
-import java.awt.event.ActionEvent;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class CustomerController implements Initializable {
@@ -62,6 +64,8 @@ public class CustomerController implements Initializable {
 	@FXML
 	private Label infoAddressChange;
 
+	@FXML
+	private Label datePickerLabel;
 
 
 	private User customer;
@@ -80,6 +84,7 @@ public class CustomerController implements Initializable {
 		//sendOpinionButton.setOnAction(event -> SaveOpinion());
 		changeNameButton.setOnAction(event -> ChangeName());
 		changeAddressButton.setOnAction(event -> ChangeAddress());
+		checkReservationButton.setOnAction(event -> CheckReservation());
 	}
 
 	public void ChangeName() {
@@ -128,19 +133,63 @@ public class CustomerController implements Initializable {
 			session.close();
 		}
 	}
+
+	public void CheckReservation(){
+		Session session = Main.sessionFactory.openSession();
+		session.beginTransaction();
+		LocalDate localDate = datePicker.getValue();
+
+		Reservation reservation = session.byNaturalId(Reservation.class)
+				.using("date", localDate)
+				.load();
+
+		session.close();
+		if(reservation != null) {
+			datePickerLabel.setText("Termin zajęty, wybierz inny");
+		}else if(datePicker.getValue() == null){
+			datePickerLabel.setText("Wybierz date");
+		}else{
+			BookRoom();
+		}
+	}
+
+	public void BookRoom(){
+		Session session = Main.sessionFactory.openSession();
+		session.beginTransaction();
+
+		String hql = "FROM Room";
+		Query query = session.createQuery(hql);
+		List<Room> roomsList = query.list();
+
+		hql = "FROM Reservation";
+		query = session.createQuery(hql);
+		List<Reservation> ReservationList = query.list();
+
+		List<Room> freeRooms;
+
+		for(Room room : roomsList){
+			System.out.println(room);
+		}
+		for(Reservation reservation1: ReservationList){
+			System.out.println(reservation1);
+		}
+	}
+
 /*	public void SaveOpinion() {
-		Session session = Main.sessionFactory.getCurrentSession();
+		Session session = Main.sessionFactory.openSession();
 		session.beginTransaction();
 
 		try {
 			Opinion opinion = new Opinion(Double.toString(sliderOpinion.getValue()));
 			customer.getOpinions().add(opinion);
 
-			session.save(customer);
+			session.save(opinion);
 			session.getTransaction().commit();
 
 		} catch (HibernateException e) {
 			e.printStackTrace();
+		}finally {
+			session.close();
 		}
 	}*/
 

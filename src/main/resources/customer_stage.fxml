@@ -23,7 +23,7 @@
                         <Label fx:id="helloName" layoutX="51.0" prefHeight="50.0" prefWidth="92.0" text=" " />
                         <Label layoutX="20.0" layoutY="72.0" prefHeight="34.0" prefWidth="163.0" text="Wybierz date rezerwacji:" />
                         <Button fx:id="checkReservationButton" layoutX="200.0" layoutY="110.0" mnemonicParsing="false" text="Sprawdz dostepnosc" />
-                        <Label layoutX="18.0" layoutY="146.0" prefHeight="46.0" prefWidth="169.0" text="Label" />
+                        <Label fx:id="datePickerLabel" layoutX="18.0" layoutY="146.0" prefHeight="46.0" prefWidth="404.0" text=" " />
                         <Label layoutX="288.0" layoutY="246.0" prefHeight="28.0" prefWidth="123.0" text="Nie zapomnij ocenić:" />
                         <Slider fx:id="sliderOpinion" blockIncrement="1.0" layoutX="279.0" layoutY="281.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" prefHeight="35.0" prefWidth="140.0" showTickLabels="true" showTickMarks="true" value="1.0" />
                         <Button fx:id="sendOpinionButton" layoutX="326.0" layoutY="332.0" mnemonicParsing="false" text="Wyslij" />
