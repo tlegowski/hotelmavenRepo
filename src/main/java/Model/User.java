@@ -5,13 +5,19 @@ import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 @Entity
+@Table(name = "USER")
 public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	@Column(name = "USER_ID")
+	private int userID;
 
 	@NaturalId
 	@Column(unique = true)
@@ -40,6 +46,9 @@ public class User implements Serializable {
 	@Column
 	private String evidenceNr;
 
+	@ManyToMany(mappedBy = "users")
+	private List<Reservation> reservations = new ArrayList<>();
+
 	public User(String login, String password, String name, String surname, Address idAddress, UserType userType, String civilianID, String evidenceNr) {
 		this.login = login;
 		this.password = password;
@@ -54,12 +63,12 @@ public class User implements Serializable {
 	public User() {
 	}
 
-	public int getId() {
-		return id;
+	public int getUserID() {
+		return userID;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setUserID(int userID) {
+		this.userID = userID;
 	}
 
 	public String getLogin() {

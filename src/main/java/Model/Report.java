@@ -10,4 +10,8 @@ public class Report {
 
 	@Column
 	private String report;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "idRoom")
+	private Room idRoom;
 }

@@ -2,6 +2,7 @@ package Controllers;
 
 import Model.Main;
 import Model.User;
+import Model.UserType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,7 +39,7 @@ public class MainController {
 
 			User user = session.byNaturalId(User.class).using("login", log).load();
 			if (user != null) {
-				if (user.getPassword().equals(pass)) {
+				if (user.getPassword().equals(pass) && user.getUserType().equals(UserType.CUSTOMER)) {
 					Stage registerStage = new Stage();
 					registerStage.initModality(Modality.APPLICATION_MODAL);
 					Parent root = FXMLLoader.load(getClass().getResource("/customer_stage.fxml"));
