@@ -28,10 +28,8 @@ public class MainController {
 	private PasswordField passwordtxt;
 
 	public void Login(ActionEvent event) {
-		//SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = Main.sessionFactory.openSession();
 		session.beginTransaction();
-
 
 		try {
 			String log = userTxt.getText();
@@ -40,13 +38,21 @@ public class MainController {
 			User user = session.byNaturalId(User.class).using("login", log).load();
 			if (user != null) {
 				if (user.getPassword().equals(pass) && user.getUserType().equals(UserType.CUSTOMER)) {
+
 					Stage registerStage = new Stage();
 					registerStage.initModality(Modality.APPLICATION_MODAL);
-					Parent root = FXMLLoader.load(getClass().getResource("/customer_stage.fxml"));
+					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/customer_stage.fxml"));
+					Parent root = fxmlLoader.load();
+
+					CustomerController customerController = fxmlLoader.getController();
+					customerController.setCustomer(user);
+
+
 					registerStage.setTitle("Hotel");
 					registerStage.setScene(new Scene(root, 433, 400));
 					registerStage.setResizable(false);
 					registerStage.showAndWait();
+
 				}else{
 					labeltxt.setText("Zle haslo");
 				}
@@ -60,6 +66,7 @@ public class MainController {
 		session.getTransaction().commit();
 
 	}
+
 
 	public void Register(ActionEvent event) throws IOException {
 		Stage registerStage = new Stage();

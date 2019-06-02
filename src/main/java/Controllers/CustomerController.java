@@ -1,9 +1,15 @@
 package Controllers;
 
+import Model.User;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-public class CustomerController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class CustomerController implements Initializable {
 
 	@FXML
 	private DatePicker datePicker;
@@ -44,13 +50,30 @@ public class CustomerController {
 	@FXML
 	private Button sendOpinionButton;
 
+	@FXML
+	private Label helloName;
 
+	private User customer;
 
-	public void show(){
+	public void show() {
 		System.out.println(sliderOpinion.getValue());
 	}
 
+	public void setCustomer(User user) {
+		customer = user;
+	}
 
 
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+
+		Platform.runLater(() -> {
+			System.out.println(customer);
+			helloName.setText(customer.getName());
+			//Platform.runLater(() -> System.out.println(customer.getName()));
+
+		});
+	}
 
 }
+//helloName.setText(customer.getName())
