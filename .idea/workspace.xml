@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b4a5eb82-1f92-4173-aff1-dea5736419a5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Reservation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/customer_stage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/customer_stage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/import.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/import.sql" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -24,8 +20,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/CustomerController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="517">
-              <caret line="238" column="48" selection-start-line="238" selection-start-column="48" selection-end-line="238" selection-end-column="48" />
+            <state relative-caret-position="557">
+              <caret line="159" column="27" lean-forward="true" selection-start-line="159" selection-start-column="27" selection-end-line="159" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1320#1321#0" expanded="true" />
@@ -380,12 +376,12 @@
       <workItem from="1559393492318" duration="11344000" />
       <workItem from="1559407401812" duration="41295000" />
       <workItem from="1559554789771" duration="4366000" />
-      <workItem from="1559660751871" duration="9915000" />
+      <workItem from="1559660751871" duration="10400000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77067000" />
+    <option name="totallyTimeSpent" value="77552000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -409,7 +405,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.14641744" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.1886388" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.10932476" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3601286" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -883,8 +879,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/CustomerController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="517">
-          <caret line="238" column="48" selection-start-line="238" selection-start-column="48" selection-end-line="238" selection-end-column="48" />
+        <state relative-caret-position="557">
+          <caret line="159" column="27" lean-forward="true" selection-start-line="159" selection-start-column="27" selection-end-line="159" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1320#1321#0" expanded="true" />

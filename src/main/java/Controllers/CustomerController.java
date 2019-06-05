@@ -142,30 +142,36 @@ public class CustomerController implements Initializable {
 	public void ChangeAddress() {
 		//System.out.println(customer);
 		Address address = customer.getIdAddress();
+		boolean newOne = false;
 		if (address == null) {
 			address = new Address();
+			newOne = true;
 		}
 		Session session = Main.sessionFactory.openSession();
 		session.beginTransaction();
 		try {
 			address.setCity(settingCity.getText());
 			address.setStreet(settingStreet.getText());
-			try {
-				address.setApartment(Integer.parseInt(settingApartment.getText()));
-			} catch (NumberFormatException e) {
-				infoAddressChange.setText("Numer mieszkania musi byc liczba");
-				e.printStackTrace();
-				return;
-			}
+			address.setApartment(Integer.parseInt(settingApartment.getText()));
 			customer.setIdAddress(address);
-			session.update(address);
+			if(newOne){
+				session.save(address);
+				session.update(customer);
+			}else{
+				session.update(address);
+			}
 			//	session.update(customer);
 			session.getTransaction().commit();
 			infoAddressChange.setText("Zmieniono adres");
 
 		} catch (HibernateException e) {
 			e.printStackTrace();
-		} finally {
+		}catch (NumberFormatException e) {
+			infoAddressChange.setText("Numer mieszkania musi byc liczba");
+			e.printStackTrace();
+			return;
+		}
+		finally {
 			session.close();
 		}
 	}
