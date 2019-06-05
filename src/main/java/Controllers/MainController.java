@@ -50,7 +50,7 @@ public class MainController {
 
 
 					registerStage.setTitle("Hotel");
-					registerStage.setScene(new Scene(root, 433, 400));
+					registerStage.setScene(new Scene(root));
 					registerStage.setResizable(false);
 					registerStage.showAndWait();
 

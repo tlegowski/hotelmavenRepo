@@ -31,9 +31,9 @@ INSERT INTO Report(report, idroom) VALUES ('zepsuta toaleta', 1);
 INSERT INTO Report(report, idroom) VALUES ('nie ma wody', 2);
 INSERT INTO Report(report, idroom) VALUES ('zarowka nie swieci', 2);
 
-INSERT INTO Reservation(roomid, date, customerid, employeeid) VALUES (1, '2019-06-10',5,3);
-INSERT INTO Reservation(roomid, date, customerid, employeeid) VALUES (2, '2019-06-11',6,4);
-INSERT INTO Reservation(roomid, date, customerid, employeeid) VALUES (3, '2019-06-12',7,3);
+INSERT INTO Reservation(ROOMID_ROOM_ID  , date, customerid, employeeid) VALUES (1, '2019-06-10',5,3);
+INSERT INTO Reservation(ROOMID_ROOM_ID  , date, customerid, employeeid) VALUES (2, '2019-06-11',6,4);
+INSERT INTO Reservation(ROOMID_ROOM_ID  , date, customerid, employeeid) VALUES (3, '2019-06-12',7,3);
 
 INSERT INTO Room_type ( describe) VALUES ( 'aneks kuchenny');
 INSERT INTO Room_type (describe) VALUES ('deszczownica');

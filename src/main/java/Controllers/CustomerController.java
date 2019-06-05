@@ -2,18 +2,18 @@ package Controllers;
 
 import Model.*;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class CustomerController implements Initializable {
 
@@ -70,7 +70,25 @@ public class CustomerController implements Initializable {
 
 
 	@FXML
+	private TableView<Room> tableView;
+
+	@FXML
+	private TableColumn<Room, Integer> idRoomColumn;
+
+	@FXML
+	private TableColumn<Room, String> describeColumn;
+
+	@FXML
+	private TableColumn<Room, Integer> numberColumn;
+
+	@FXML
 	private Label sendInfo;
+
+	@FXML
+	private Button reservationButton;
+
+	@FXML
+	private Label reservationLabel;
 
 	private User customer;
 
@@ -92,6 +110,11 @@ public class CustomerController implements Initializable {
 		checkReservationButton.setOnAction(event -> CheckReservation());
 		//sliderOpinion.setMinorTickCount(0);
 		sliderOpinion.setSnapToTicks(true);
+		idRoomColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+		describeColumn.setCellValueFactory(new PropertyValueFactory<>("describe"));
+		numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
+		reservationButton.setOnAction(event -> MakeReservation());
+
 	}
 
 	public void ChangeName() {
@@ -119,7 +142,7 @@ public class CustomerController implements Initializable {
 	public void ChangeAddress() {
 		//System.out.println(customer);
 		Address address = customer.getIdAddress();
-		if(address == null){
+		if (address == null) {
 			address = new Address();
 		}
 		Session session = Main.sessionFactory.openSession();
@@ -136,7 +159,7 @@ public class CustomerController implements Initializable {
 			}
 			customer.setIdAddress(address);
 			session.update(address);
-		//	session.update(customer);
+			//	session.update(customer);
 			session.getTransaction().commit();
 			infoAddressChange.setText("Zmieniono adres");
 
@@ -162,11 +185,12 @@ public class CustomerController implements Initializable {
 		} else if (datePicker.getValue() == null) {
 			datePickerLabel.setText("Wybierz date");
 		} else {
-			BookRoom();
+			ShowFreeRooms();
 		}
 	}
 
-	public void BookRoom() {
+	public void ShowFreeRooms() {
+		datePickerLabel.setText("Wybierz pokoj:");
 		Session session = Main.sessionFactory.openSession();
 		session.beginTransaction();
 
@@ -179,12 +203,43 @@ public class CustomerController implements Initializable {
 		List<Reservation> ReservationList = query.list();
 		session.close();
 		ArrayList<Room> freeRooms = new ArrayList<>();
+		Set<Room> busyRooms = new HashSet<>();
+		for (Reservation re : ReservationList) {
+			busyRooms.add(re.getRoomID());
+		}
 
+		for (Room room : roomsList) {
+			if (!busyRooms.contains(room)) {
+				freeRooms.add(room);
+			}
+		}
+		tableView.setItems(FXCollections.observableArrayList(freeRooms));
+	}
 
-		for (Room room : freeRooms) {
-			System.out.println(room);
+	public void MakeReservation() {
+		Room room = tableView.getSelectionModel().getSelectedItem();
+		if (room != null) {
+			LocalDate localDate = datePicker.getValue();
+
+			Session session = Main.sessionFactory.openSession();
+			session.beginTransaction();
+
+			String hql = "FROM User WHERE USER_ID = 2";
+			Query query = session.createQuery(hql);
+
+			List<User> employee = query.list();
+
+			Reservation reservation = new Reservation(room, localDate, customer, employee.get(0));
+			reservationLabel.setText("Zarezerwowano");
+			tableView.getItems().clear();
+			session.save(reservation);
+			session.getTransaction().commit();
+			session.close();
+		}else{
+			reservationLabel.setText("Wybierz date");
 		}
 	}
+
 
 	public void SaveOpinion() {
 		Session session = Main.sessionFactory.openSession();

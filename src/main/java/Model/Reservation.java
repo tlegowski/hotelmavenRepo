@@ -13,8 +13,8 @@ public class Reservation {
 	@Column(name = "RESERVATION_ID")
 	private int reservationID;
 
-	@Column
-	private int roomID;
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Room roomID;
 
 	@Column
 	@NaturalId
@@ -39,11 +39,11 @@ public class Reservation {
 		this.reservationID = reservationID;
 	}
 
-	public int getRoomID() {
+	public Room getRoomID() {
 		return roomID;
 	}
 
-	public void setRoomID(int roomID) {
+	public void setRoomID(Room roomID) {
 		this.roomID = roomID;
 	}
 
@@ -80,6 +80,13 @@ public class Reservation {
 				", customer=" + customer +
 				", employee=" + employee +
 				'}';
+	}
+
+	public Reservation(Room roomID, LocalDate date, User customer, User employee) {
+		this.roomID = roomID;
+		this.date = date;
+		this.customer = customer;
+		this.employee = employee;
 	}
 
 	//LocaldDate costam = LocalDate.of(2014, Month.JANUARY, 1);
