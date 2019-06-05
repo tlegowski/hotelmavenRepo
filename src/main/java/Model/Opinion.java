@@ -19,7 +19,8 @@ public class Opinion {
 			CascadeType.PERSIST,
 			CascadeType.MERGE
 	})
-	@JoinTable(name = "opinion_has_user",
+	@JoinTable(
+			name = "opinion_has_user",
 			joinColumns = {@JoinColumn(name = "fk_opinion")},
 			inverseJoinColumns = {@JoinColumn(name = "fk_user")})
 	private List<User> users = new ArrayList<>();
@@ -42,5 +43,13 @@ public class Opinion {
 
 	public Opinion(String opinion) {
 		this.opinion = opinion;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 }

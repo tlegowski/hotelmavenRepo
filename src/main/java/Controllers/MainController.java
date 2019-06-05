@@ -54,32 +54,42 @@ public class MainController {
 					registerStage.setResizable(false);
 					registerStage.showAndWait();
 
-				}else{
-					labeltxt.setText("Zle haslo");
+				} else if (user.getPassword().equals(pass) && user.getUserType().equals(UserType.ADMIN)) {
+					Stage registerStage = new Stage();
+					registerStage.initModality(Modality.APPLICATION_MODAL);
+					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/admin_stage.fxml"));
+					Parent root = fxmlLoader.load();
+
+					registerStage.setTitle("Hotel");
+					registerStage.setScene(new Scene(root, 527, 400));
+					registerStage.setResizable(false);
+					registerStage.showAndWait();
 				}
-			}else{
-				labeltxt.setText("Nieprawidlowe dane");
+				else{
+						labeltxt.setText("Zle haslo");
+					}
+				} else {
+					labeltxt.setText("Nieprawidlowe dane");
+				}
+
+			} catch(Exception e){
+				e.printStackTrace();
+			} finally{
+				session.getTransaction().commit();
+				session.close();
 			}
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		finally {
-			session.getTransaction().commit();
-			session.close();
+
 		}
 
 
+		public void Register (ActionEvent event) throws IOException {
+			Stage registerStage = new Stage();
+			registerStage.initModality(Modality.APPLICATION_MODAL);
+			Parent root = FXMLLoader.load(getClass().getResource("/register_stage.fxml"));
+			registerStage.setTitle("Hotel");
+			registerStage.setScene(new Scene(root, 410, 440));
+			registerStage.setResizable(false);
+			registerStage.showAndWait();
+		}
 	}
-
-
-	public void Register(ActionEvent event) throws IOException {
-		Stage registerStage = new Stage();
-		registerStage.initModality(Modality.APPLICATION_MODAL);
-		Parent root = FXMLLoader.load(getClass().getResource("/register_stage.fxml"));
-		registerStage.setTitle("Hotel");
-		registerStage.setScene(new Scene(root, 410, 440));
-		registerStage.setResizable(false);
-		registerStage.showAndWait();
-	}
-}

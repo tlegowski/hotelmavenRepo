@@ -11,6 +11,7 @@ import org.hibernate.query.Query;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -68,6 +69,9 @@ public class CustomerController implements Initializable {
 	private Label datePickerLabel;
 
 
+	@FXML
+	private Label sendInfo;
+
 	private User customer;
 
 /*	public void show() {
@@ -80,11 +84,14 @@ public class CustomerController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		Platform.runLater(() -> helloName.setText(customer.getName()));
-		//sendOpinionButton.setOnAction(event -> SaveOpinion());
+		Platform.runLater(() ->
+				helloName.setText(customer.getName()));
+		sendOpinionButton.setOnAction(event -> SaveOpinion());
 		changeNameButton.setOnAction(event -> ChangeName());
 		changeAddressButton.setOnAction(event -> ChangeAddress());
 		checkReservationButton.setOnAction(event -> CheckReservation());
+		//sliderOpinion.setMinorTickCount(0);
+		sliderOpinion.setSnapToTicks(true);
 	}
 
 	public void ChangeName() {
@@ -104,37 +111,43 @@ public class CustomerController implements Initializable {
 
 		} catch (HibernateException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			session.close();
 		}
 	}
 
-	public void ChangeAddress(){
+	public void ChangeAddress() {
+		//System.out.println(customer);
 		Address address = customer.getIdAddress();
+		if(address == null){
+			address = new Address();
+		}
 		Session session = Main.sessionFactory.openSession();
 		session.beginTransaction();
-		try{
+		try {
 			address.setCity(settingCity.getText());
 			address.setStreet(settingStreet.getText());
 			try {
 				address.setApartment(Integer.parseInt(settingApartment.getText()));
-			}catch(NumberFormatException e){
+			} catch (NumberFormatException e) {
 				infoAddressChange.setText("Numer mieszkania musi byc liczba");
 				e.printStackTrace();
 				return;
 			}
+			customer.setIdAddress(address);
 			session.update(address);
+		//	session.update(customer);
 			session.getTransaction().commit();
 			infoAddressChange.setText("Zmieniono adres");
 
 		} catch (HibernateException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			session.close();
 		}
 	}
 
-	public void CheckReservation(){
+	public void CheckReservation() {
 		Session session = Main.sessionFactory.openSession();
 		session.beginTransaction();
 		LocalDate localDate = datePicker.getValue();
@@ -144,16 +157,16 @@ public class CustomerController implements Initializable {
 				.load();
 
 		session.close();
-		if(reservation != null) {
+		if (reservation != null) {
 			datePickerLabel.setText("Termin zajęty, wybierz inny");
-		}else if(datePicker.getValue() == null){
+		} else if (datePicker.getValue() == null) {
 			datePickerLabel.setText("Wybierz date");
-		}else{
+		} else {
 			BookRoom();
 		}
 	}
 
-	public void BookRoom(){
+	public void BookRoom() {
 		Session session = Main.sessionFactory.openSession();
 		session.beginTransaction();
 
@@ -164,33 +177,34 @@ public class CustomerController implements Initializable {
 		hql = "FROM Reservation";
 		query = session.createQuery(hql);
 		List<Reservation> ReservationList = query.list();
+		session.close();
+		ArrayList<Room> freeRooms = new ArrayList<>();
 
-		List<Room> freeRooms;
 
-		for(Room room : roomsList){
+		for (Room room : freeRooms) {
 			System.out.println(room);
-		}
-		for(Reservation reservation1: ReservationList){
-			System.out.println(reservation1);
 		}
 	}
 
-/*	public void SaveOpinion() {
+	public void SaveOpinion() {
 		Session session = Main.sessionFactory.openSession();
 		session.beginTransaction();
 
 		try {
 			Opinion opinion = new Opinion(Double.toString(sliderOpinion.getValue()));
-			customer.getOpinions().add(opinion);
+			opinion.getUsers().add(customer);
 
 			session.save(opinion);
 			session.getTransaction().commit();
 
 		} catch (HibernateException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			session.close();
 		}
-	}*/
+		sendOpinionButton.setDisable(true);
+		sliderOpinion.setDisable(true);
+		sendInfo.setText("Dziekujemy");
+	}
 
 }

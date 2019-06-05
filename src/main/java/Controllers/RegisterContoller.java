@@ -46,8 +46,15 @@ public class RegisterContoller {
 		session.beginTransaction();
 
 		try {
-			User user = new User
-					(registerLogin.getText(), registerPass.getText(), registerName.getText(), registerSurname.getText(), null, UserType.CUSTOMER, registerCivilianID.getText(), registerEvidenceNr.getText());
+			User user = new User(
+					registerLogin.getText(),
+					registerPass.getText(),
+					registerName.getText(),
+					registerSurname.getText(),
+					null,
+					UserType.CUSTOMER,
+					registerCivilianID.getText(),
+					registerEvidenceNr.getText());
 
 			session.save(user);
 			session.getTransaction().commit();
@@ -55,6 +62,8 @@ public class RegisterContoller {
 		} catch (HibernateException e) {
 			registerInfo.setText("Login zajety, sprobuj inny");
 			e.printStackTrace();
+		}finally {
+			session.close();
 		}
 
 	}
