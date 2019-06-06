@@ -90,6 +90,12 @@ public class CustomerController implements Initializable {
 	@FXML
 	private Label reservationLabel;
 
+	@FXML
+	private Button reportButton;
+
+	@FXML
+	private TextField reportTextField;
+
 	private User customer;
 
 /*	public void show() {
@@ -104,16 +110,16 @@ public class CustomerController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		Platform.runLater(() ->
 				helloName.setText(customer.getName()));
-		sendOpinionButton.setOnAction(event -> SaveOpinion());
-		changeNameButton.setOnAction(event -> ChangeName());
-		changeAddressButton.setOnAction(event -> ChangeAddress());
-		checkReservationButton.setOnAction(event -> CheckReservation());
-		//sliderOpinion.setMinorTickCount(0);
-		sliderOpinion.setSnapToTicks(true);
-		idRoomColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-		describeColumn.setCellValueFactory(new PropertyValueFactory<>("describe"));
-		numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
-		reservationButton.setOnAction(event -> MakeReservation());
+				sendOpinionButton.setOnAction(event -> SaveOpinion());
+				changeNameButton.setOnAction(event -> ChangeName());
+				changeAddressButton.setOnAction(event -> ChangeAddress());
+				checkReservationButton.setOnAction(event -> CheckReservation());
+				sliderOpinion.setSnapToTicks(true);
+				idRoomColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+				describeColumn.setCellValueFactory(new PropertyValueFactory<>("describe"));
+				numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
+				reservationButton.setOnAction(event -> MakeReservation());
+				reportButton.setOnAction(event -> SaveReport());
 
 	}
 
@@ -154,10 +160,10 @@ public class CustomerController implements Initializable {
 			address.setStreet(settingStreet.getText());
 			address.setApartment(Integer.parseInt(settingApartment.getText()));
 			customer.setIdAddress(address);
-			if(newOne){
+			if (newOne) {
 				session.save(address);
 				session.update(customer);
-			}else{
+			} else {
 				session.update(address);
 			}
 			//	session.update(customer);
@@ -166,12 +172,11 @@ public class CustomerController implements Initializable {
 
 		} catch (HibernateException e) {
 			e.printStackTrace();
-		}catch (NumberFormatException e) {
+		} catch (NumberFormatException e) {
 			infoAddressChange.setText("Numer mieszkania musi byc liczba");
 			e.printStackTrace();
 			return;
-		}
-		finally {
+		} finally {
 			session.close();
 		}
 	}
@@ -241,7 +246,7 @@ public class CustomerController implements Initializable {
 			session.save(reservation);
 			session.getTransaction().commit();
 			session.close();
-		}else{
+		} else {
 			reservationLabel.setText("Wybierz date");
 		}
 	}
@@ -266,6 +271,36 @@ public class CustomerController implements Initializable {
 		sendOpinionButton.setDisable(true);
 		sliderOpinion.setDisable(true);
 		sendInfo.setText("Dziekujemy");
+	}
+
+	public void SaveReport() {
+		Session session = Main.sessionFactory.openSession();
+		session.beginTransaction();
+
+		String hql = "FROM Reservation";
+		Query query = session.createQuery(hql);
+		List<Reservation> reservations = query.list();
+		Set<Reservation> reservationSet = new HashSet<>();
+
+		for (Reservation reservation : reservations) {
+			reservationSet.add(reservation);
+		}
+		try {
+			if (true) {
+				Report report = new Report(reportTextField.getText());
+				report.getUsers().add(customer);
+
+
+				session.save(report);
+				session.getTransaction().commit();
+			} else {
+
+			}
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
 	}
 
 }

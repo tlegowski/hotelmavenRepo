@@ -61,7 +61,7 @@ public class MainController {
 					Parent root = fxmlLoader.load();
 
 					registerStage.setTitle("Hotel");
-					registerStage.setScene(new Scene(root, 527, 400));
+					registerStage.setScene(new Scene(root));
 					registerStage.setResizable(false);
 					registerStage.showAndWait();
 				}

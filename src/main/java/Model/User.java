@@ -37,6 +37,9 @@ public class User implements Serializable {
 	@ManyToMany(mappedBy = "users")
 	private List<Opinion> opinions = new ArrayList<>();
 
+	@ManyToMany(mappedBy = "users")
+	private List<Report> reports = new ArrayList<>();
+
 	@Column
 	@Enumerated(EnumType.STRING)
 	private UserType userType;
@@ -141,4 +144,16 @@ public class User implements Serializable {
 		this.opinions = opinions;
 	}
 
+	public List<Report> getReports() {
+		return reports;
+	}
+
+	public void setReports(List<Report> reports) {
+		this.reports = reports;
+	}
+
+	@Override
+	public String toString() {
+		return name + " " + surname + "(id: " + userID +  ", login: " + login;
+	}
 }

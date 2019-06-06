@@ -4,21 +4,120 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="527.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="986.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminController">
    <children>
-      <ChoiceBox fx:id="choiceBox" layoutX="276.0" layoutY="28.0" prefHeight="36.0" prefWidth="234.0" />
-      <Button fx:id="deleteUserButton" layoutX="329.0" layoutY="74.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="128.0" text="Usun uzytkownika" />
-      <TextField fx:id="nameTextField" layoutX="14.0" layoutY="14.0" promptText="Imie" />
-      <TextField fx:id="surnameTextField" layoutX="14.0" layoutY="46.0" promptText="Nazwisko" />
-      <TextField fx:id="civilianIdTextField" layoutX="14.0" layoutY="79.0" promptText="pesel" />
-      <TextField fx:id="evidenceNrTextField" layoutX="14.0" layoutY="112.0" promptText="Numer Dowodu " />
-      <TextField fx:id="loginTextField" layoutX="14.0" layoutY="145.0" promptText="Login" />
-      <PasswordField fx:id="passwordTextField" layoutX="14.0" layoutY="188.0" promptText="haslo" />
-      <Button fx:id="addEmployeeButton" layoutX="14.0" layoutY="241.0" mnemonicParsing="false" onAction="#RegisterButton" prefHeight="47.0" prefWidth="149.0" text="Zarejestruj" />
-      <Label fx:id="addInfoLabel" layoutX="14.0" layoutY="322.0" prefHeight="47.0" prefWidth="149.0" text=" " />
-      <Label fx:id="deleteInfoLabel" layoutX="331.0" layoutY="149.0" prefHeight="36.0" prefWidth="176.0" text=" " />
+      <TabPane layoutX="-218.0" prefHeight="400.0" prefWidth="527.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="Dodaj uzytkownika">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="371.0" prefWidth="754.0">
+                     <children>
+                        <TextField fx:id="nameTextField" layoutX="21.0" layoutY="24.0" promptText="Imie" />
+                        <TextField fx:id="surnameTextField" layoutX="21.0" layoutY="62.0" promptText="Nazwisko" />
+                        <TextField fx:id="civilianIdTextField" layoutX="21.0" layoutY="137.0" promptText="pesel" />
+                        <TextField fx:id="evidenceNrTextField" layoutX="21.0" layoutY="101.0" promptText="Numer Dowodu " />
+                        <TextField fx:id="loginTextField" layoutX="21.0" layoutY="173.0" promptText="Login" />
+                        <PasswordField fx:id="passwordTextField" layoutX="21.0" layoutY="209.0" promptText="haslo" />
+                        <Button fx:id="addEmployeeButton" layoutX="21.0" layoutY="291.0" mnemonicParsing="false" onAction="#RegisterButton" prefHeight="47.0" prefWidth="149.0" text="Zarejestruj" />
+                        <Label fx:id="addInfoLabel" layoutX="224.0" layoutY="162.0" prefHeight="47.0" prefWidth="149.0" text=" " />
+                        <ChoiceBox fx:id="choiceUserType" layoutX="21.0" layoutY="245.0" prefWidth="150.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Usun uzytkownika">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ChoiceBox fx:id="choiceUsersDelete" layoutX="320.0" layoutY="61.0" prefHeight="36.0" prefWidth="234.0" />
+                        <Button fx:id="deleteUserButton" layoutX="373.0" layoutY="136.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="128.0" text="Usun uzytkownika" />
+                        <Label fx:id="deleteInfoLabel" layoutX="349.0" layoutY="216.0" prefHeight="45.0" prefWidth="356.0" text=" " />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Zmien adres">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="changeCityTextField" layoutX="14.0" layoutY="14.0" promptText="Miasto" />
+                        <TextField fx:id="changeStreetTextField" layoutX="14.0" layoutY="53.0" promptText="Ulica" />
+                        <TextField fx:id="changeApartmTextField" layoutX="14.0" layoutY="91.0" promptText="Numer Mieszkania" />
+                        <ChoiceBox fx:id="choiceUserForAddress" layoutX="14.0" layoutY="128.0" prefWidth="150.0" />
+                        <Button fx:id="changeAddressButton" layoutX="46.0" layoutY="186.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="85.0" text="Zmien" />
+                        <Label fx:id="changeAddressInfoLabel" layoutX="55.0" layoutY="235.0" prefHeight="48.0" prefWidth="178.0" text=" " />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Wyswietl opinie">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tableViewOpinions" layoutX="74.0" layoutY="47.0" prefHeight="371.0" prefWidth="986.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="idOpinionColumn" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="opinionColumn" prefWidth="75.0" text="Opinia" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Raporty">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tableViewReports" layoutX="72.0" layoutY="14.0" prefHeight="371.0" prefWidth="986.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="idReportColumn" prefWidth="75.0" text="ID" />
+                              <TableColumn fx:id="reservationIdColumn" prefWidth="92.0" text="Rezerwacja ID" />
+                            <TableColumn fx:id="reportColumn" prefWidth="818.0" text="Raport" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Rezerwacje">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tableViewReservation" layoutX="68.0" layoutY="-14.0" prefHeight="371.0" prefWidth="986.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="idReservationColumn" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="dateReservationColumn" prefWidth="75.0" text="Data" />
+                              <TableColumn fx:id="clientReservationColumn" prefWidth="75.0" text="Klient " />
+                              <TableColumn fx:id="employeeReservationColumn" prefWidth="75.0" text="Pracownik" />
+                              <TableColumn fx:id="roomsReservationColumn" prefWidth="75.0" text="Pokoj" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Typy pokoi">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tableViewRoomType" layoutX="25.0" layoutY="14.0" prefHeight="371.0" prefWidth="986.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn fx:id="idRoomTypeColumn" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="describeRoomTypeColumn" prefWidth="910.0" text="Opis" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
    </children>
 </AnchorPane>

@@ -27,13 +27,15 @@ INSERT INTO Opinion(opinion) VALUES ('3.5');
 INSERT INTO Opinion(opinion) VALUES ('4');
 INSERT INTO Opinion(opinion) VALUES ('5');
 
-INSERT INTO Report(report, idroom) VALUES ('zepsuta toaleta', 1);
-INSERT INTO Report(report, idroom) VALUES ('nie ma wody', 2);
-INSERT INTO Report(report, idroom) VALUES ('zarowka nie swieci', 2);
 
 INSERT INTO Reservation(ROOMID_ROOM_ID  , date, customerid, employeeid) VALUES (1, '2019-06-10',5,3);
 INSERT INTO Reservation(ROOMID_ROOM_ID  , date, customerid, employeeid) VALUES (2, '2019-06-11',6,4);
 INSERT INTO Reservation(ROOMID_ROOM_ID  , date, customerid, employeeid) VALUES (3, '2019-06-12',7,3);
+
+
+INSERT INTO Report(report, RESERVATION_ID) VALUES ('zepsuta toaleta', 1);
+INSERT INTO Report(report, RESERVATION_ID) VALUES ('nie ma wody', 2);
+INSERT INTO Report(report, RESERVATION_ID) VALUES ('zarowka nie swieci', 2);
 
 INSERT INTO Room_type ( describe) VALUES ( 'aneks kuchenny');
 INSERT INTO Room_type (describe) VALUES ('deszczownica');
@@ -47,3 +49,7 @@ INSERT INTO Room_type_has_room (fk_room_type, fk_room) VALUES (3,2);
 INSERT INTO OPINION_HAS_USER (fk_opinion, fk_user) VALUES (3,5);
 INSERT INTO OPINION_HAS_USER (fk_opinion, fk_user) VALUES (4,6);
 INSERT INTO OPINION_HAS_USER (fk_opinion, fk_user) VALUES (3,7);
+
+INSERT INTO REPORT_HAS_USER (FK_REPORT,FK_USER ) VALUES(1, 5);
+INSERT INTO REPORT_HAS_USER (FK_REPORT,FK_USER ) VALUES(2, 6);
+INSERT INTO REPORT_HAS_USER (FK_REPORT,FK_USER ) VALUES(3, 7);
