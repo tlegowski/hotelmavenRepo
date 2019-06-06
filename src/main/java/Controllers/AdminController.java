@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.LazyInitializationException;
 import org.hibernate.Session;
@@ -177,9 +178,40 @@ public class AdminController implements Initializable {
 		choiceUserForAddress.setItems(FXCollections.observableArrayList(users));
 		changeAddressButton.setOnAction(event -> ChangeAddress());
 
+		ShowOpinions();
+		ShowReports();
+
 		session.close();
 	}
 
+	public void ShowOpinions(){
+		Session session = Main.sessionFactory.openSession();
+		session.beginTransaction();
+
+		String hql = "FROM Opinion";
+		Query query = session.createQuery(hql);
+		List<Opinion> opinions = query.list();
+
+		idOpinionColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+		opinionColumn.setCellValueFactory(new PropertyValueFactory<>("opinion"));
+		tableViewOpinions.setItems(FXCollections.observableArrayList(opinions));
+
+		session.close();
+	}
+
+	public void ShowReports(){
+		Session session = Main.sessionFactory.openSession();
+		session.beginTransaction();
+
+		String hql = "FROM Report";
+		Query query = session.createQuery(hql);
+		List<Report> reports = query.list();
+
+		idReportColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+		reservationIdColumn.setCellValueFactory(new PropertyValueFactory<>("reservationID"));
+		reportColumn.setCellValueFactory(new PropertyValueFactory<>("report"));
+		tableViewReports.setItems(FXCollections.observableArrayList(reports));
+	}
 	public void ChangeAddress(){
 		Session session = Main.sessionFactory.openSession();
 		session.beginTransaction();

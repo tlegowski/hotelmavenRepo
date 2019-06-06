@@ -64,4 +64,6 @@ public class Report {
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
+
+	public Report(){}
 }

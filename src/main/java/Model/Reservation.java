@@ -73,13 +73,7 @@ public class Reservation {
 
 	@Override
 	public String toString() {
-		return "Reservation{" +
-				"reservationID=" + reservationID +
-				", roomID=" + roomID +
-				", date=" + date +
-				", customer=" + customer +
-				", employee=" + employee +
-				'}';
+		return Integer.toString(reservationID);
 	}
 
 	public Reservation(Room roomID, LocalDate date, User customer, User employee) {

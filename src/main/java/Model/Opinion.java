@@ -52,4 +52,5 @@ public class Opinion {
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}
+	public Opinion(){}
 }
