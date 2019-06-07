@@ -6,12 +6,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="rootStage" maxHeight="300.0" maxWidth="300.0" minHeight="300.0" minWidth="300.0" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
+<AnchorPane fx:id="rootStage" maxHeight="300.0" maxWidth="381.0" minHeight="300.0" minWidth="300.0" prefHeight="300.0" prefWidth="325.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainController">
     <children>
-        <Button layoutX="119.0" layoutY="170.0" mnemonicParsing="false" onAction="#Login" prefHeight="25.0" prefWidth="60.0" text="Zaloguj" />
-        <TextField fx:id="userTxt" layoutX="76.0" layoutY="68.0" prefHeight="42.0" prefWidth="149.0" promptText="login" />
-        <PasswordField fx:id="passwordtxt" layoutX="76.0" layoutY="120.0" prefHeight="42.0" prefWidth="149.0" promptText="haslo" />
-        <Label fx:id="labeltxt" layoutX="74.0" layoutY="43.0" prefHeight="25.0" prefWidth="149.0" text="Logowanie:" />
-      <Button layoutX="112.0" layoutY="261.0" mnemonicParsing="false" onAction="#Register" text="Rejestracja" />
+        <Button layoutX="90.0" layoutY="170.0" mnemonicParsing="false" onAction="#Login" prefHeight="25.0" prefWidth="60.0" text="Zaloguj" />
+        <TextField fx:id="userTxt" layoutX="45.0" layoutY="67.0" prefHeight="42.0" prefWidth="149.0" promptText="login" />
+        <PasswordField fx:id="passwordtxt" layoutX="45.0" layoutY="119.0" prefHeight="42.0" prefWidth="149.0" promptText="haslo" />
+        <Label fx:id="labeltxt" layoutX="45.0" layoutY="31.0" prefHeight="25.0" prefWidth="149.0" text="Logowanie:" />
+      <Button layoutX="126.0" layoutY="261.0" mnemonicParsing="false" onAction="#Register" text="Rejestracja" />
+      <Label alignment="TOP_LEFT" layoutX="238.0" layoutY="11.0" prefHeight="65.0" prefWidth="87.0" text="a/a - admin&#10;b/b - customer&#10;c/c - employee&#10;" />
     </children>
 </AnchorPane>

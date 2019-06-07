@@ -180,10 +180,44 @@ public class AdminController implements Initializable {
 
 		ShowOpinions();
 		ShowReports();
-
+		//ShowReservations();
+		ShowRoomTypes();
 		session.close();
 	}
 
+
+	//problem z wyswietlaniem ID
+	/*public void ShowReservations(){
+		Session session = Main.sessionFactory.openSession();
+		session.beginTransaction();
+
+		String hql = "FROM Opinion";
+		Query query = session.createQuery(hql);
+		List<Reservation> reservations = query.list();
+
+		idReservationColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+		dateReservationColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+		clientReservationColumn.setCellValueFactory(new PropertyValueFactory<>("customer"));
+		employeeReservationColumn.setCellValueFactory(new PropertyValueFactory<>("employee"));
+		roomsReservationColumn.setCellValueFactory(new PropertyValueFactory<>("roomID"));
+
+		tableViewReservation.setItems(FXCollections.observableArrayList(reservations));
+
+
+	}*/
+
+	public void ShowRoomTypes(){
+		Session session = Main.sessionFactory.openSession();
+		session.beginTransaction();
+
+		String hql = "FROM Room_type";
+		Query query = session.createQuery(hql);
+		List<Room_type> room_types = query.list();
+
+		idRoomTypeColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+		describeRoomTypeColumn.setCellValueFactory(new PropertyValueFactory<>("describe"));
+		tableViewRoomType.setItems(FXCollections.observableArrayList(room_types));
+	}
 	public void ShowOpinions(){
 		Session session = Main.sessionFactory.openSession();
 		session.beginTransaction();

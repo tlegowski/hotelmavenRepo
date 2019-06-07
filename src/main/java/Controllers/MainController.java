@@ -64,6 +64,18 @@ public class MainController {
 					registerStage.setScene(new Scene(root));
 					registerStage.setResizable(false);
 					registerStage.showAndWait();
+				}else if (user.getPassword().equals(pass) && user.getUserType().equals(UserType.EMPLOYEE)) {
+					Stage registerStage = new Stage();
+					registerStage.initModality(Modality.APPLICATION_MODAL);
+					FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/employee.fxml"));
+					Parent root = fxmlLoader.load();
+
+					EmployeeController employeeController = fxmlLoader.getController();
+					employeeController.setEmployee(user);
+					registerStage.setTitle("Hotel");
+					registerStage.setScene(new Scene(root));
+					registerStage.setResizable(false);
+					registerStage.showAndWait();
 				}
 				else{
 						labeltxt.setText("Zle haslo");

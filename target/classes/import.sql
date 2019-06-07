@@ -4,16 +4,16 @@ INSERT INTO Address (city, street, apartment) VALUES ('Katowice', 'Mila', 420);
 INSERT INTO Address (city, street, apartment) VALUES ('Gdansk', 'Grunwaldzka', 997);
 
 
-INSERT INTO User (login, password, name, surname, ID_Address, userType, civilianID, evidenceNr) VALUES ('admin', 'admin', 'Tomek', 'Legowski', 3, 'ADMIN', '9712331441', 'ABC1412');
+INSERT INTO User (login, password, name, surname, ID_Address, userType, civilianID, evidenceNr) VALUES ('a', 'a', 'Tomek', 'Legowski', 3, 'ADMIN', '9712331441', 'ABC1412');
 
 INSERT INTO User (login, password, name, surname, ID_Address, userType, civilianID, evidenceNr) VALUES ('kryscio', 'asd', 'Krystian', 'Lukasiak', 2, 'EMPLOYEE', '91244122', 'UXX92144');
 INSERT INTO User (login, password, name, surname, ID_Address, userType, civilianID, evidenceNr) VALUES ('tomcio', 'asd', 'Patryk', 'Sawczuk', 2, 'EMPLOYEE', '755545462', 'URV92144');
-INSERT INTO User (login, password, name, surname, ID_Address, userType, civilianID, evidenceNr) VALUES ('malinka', 'asd', 'Krzysztof', 'Ibisz', 2, 'EMPLOYEE', '91244122', 'UXX92144');
+INSERT INTO User (login, password, name, surname, ID_Address, userType, civilianID, evidenceNr) VALUES ('c', 'c', 'Krzysztof', 'Ibisz', 2, 'EMPLOYEE', '91244122', 'UXX92144');
 
 INSERT INTO User (login, password, name, surname, ID_Address, userType, civilianID, evidenceNr) VALUES ('kazio', 'asd', 'Kazimierz', 'Nowak', 3, 'CUSTOMER', '682248457', 'HWP81273');
-INSERT INTO User (login, password, name, surname, ID_Address, userType, civilianID, evidenceNr) VALUES ('paki', 'asd', 'Karol', 'Kowalski', 2, 'CUSTOMER', '46778484', 'OXK78528');
+INSERT INTO User (login, password, name, surname, ID_Address, userType, civilianID, evidenceNr) VALUES ('b', 'b', 'Karol', 'Kowalski', 2, 'CUSTOMER', '46778484', 'OXK78528');
 INSERT INTO User (login, password, name, surname, ID_Address, userType, civilianID, evidenceNr) VALUES ('asd', 'asd', 'Pawel', 'Lubelski', 3, 'CUSTOMER', '8577485', 'PNY572885');
-INSERT INTO User (login, password, userType) VALUES ('a', 'a', 'ADMIN');
+
 
 
 INSERT INTO Room(describe, number) VALUES ('kolorowy pokoj dla dwoch osob', 51);

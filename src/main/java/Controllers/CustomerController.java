@@ -109,7 +109,7 @@ public class CustomerController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		Platform.runLater(() ->
-				helloName.setText(customer.getName()));
+				helloName.setText("Witaj " + customer.getName()));
 				sendOpinionButton.setOnAction(event -> SaveOpinion());
 				changeNameButton.setOnAction(event -> ChangeName());
 				changeAddressButton.setOnAction(event -> ChangeAddress());

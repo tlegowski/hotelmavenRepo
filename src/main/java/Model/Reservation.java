@@ -76,6 +76,7 @@ public class Reservation {
 		return Integer.toString(reservationID);
 	}
 
+
 	public Reservation(Room roomID, LocalDate date, User customer, User employee) {
 		this.roomID = roomID;
 		this.date = date;
