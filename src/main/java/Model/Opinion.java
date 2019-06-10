@@ -19,6 +19,7 @@ public class Opinion {
 	private String opinion;
 
 	@ManyToMany(mappedBy = "opinions")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private List<User> users = new ArrayList<>();
 
 	public String getOpinion() {

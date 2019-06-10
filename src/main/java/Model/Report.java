@@ -1,5 +1,8 @@
 package Model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +18,11 @@ public class Report {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "RESERVATION_ID")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Reservation reservationID;
 
 	@ManyToMany(mappedBy = "reports")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private List<User> users = new ArrayList<>();
 
 

@@ -125,7 +125,44 @@ public class AdminController implements Initializable {
 	@FXML
 	private TableColumn<Room, String> describeRoomColumn;
 
+	@FXML
+	private Button deleteRoomButton;
 
+	@FXML
+	private Button deleteButtonReport;
+
+	@FXML
+	private Label deleteReportLabel;
+
+	@FXML
+	private Label deleteRoomLabel;
+
+	@FXML
+	private Button deleteRoomTypeButton;
+
+	@FXML
+	private Label deleteRoomTypeLabel;
+
+	@FXML
+	private ChoiceBox<User> choiceUsers;
+
+	@FXML
+	private Button deleteUserButton;
+
+	@FXML
+	private Label deleteUserLabel;
+
+	@FXML
+	private Button deleteOpinionButton;
+
+	@FXML
+	private Label deleteOpinionLabel;
+
+	@FXML
+	private Button deleteReservationButton;
+
+	@FXML
+	private Label deleteReservationLabel;
 
 	public void RegisterButton(ActionEvent event) {
 		Session session = Main.sessionFactory.openSession();
@@ -171,15 +208,98 @@ public class AdminController implements Initializable {
 
 		choiceUserForAddress.setItems(FXCollections.observableArrayList(users));
 		changeAddressButton.setOnAction(event -> ChangeAddress());
-
+		deleteRoomButton.setOnAction(event -> DeleteRoom());
+		deleteButtonReport.setOnAction(event -> DeleteReport());
+		deleteRoomTypeButton.setOnAction(event -> DeleteRoomType());
+		deleteUserButton.setOnAction(event -> DeleteUser());
+		deleteOpinionButton.setOnAction(event -> DeleteOpinion());
+		deleteReservationButton.setOnAction(event -> DeleteReservation());
 		ShowOpinions();
 		ShowReports();
 		ShowReservations();
 		ShowRoomTypes();
 		ShowRooms();
+		LoadUsers();
 		session.close();
 	}
 
+	public void DeleteReservation(){
+		Session session = Main.sessionFactory.openSession();
+		session.beginTransaction();
+
+		session.delete(tableViewReservation.getSelectionModel().getSelectedItem());
+		session.getTransaction().commit();
+		session.close();
+		deleteReservationLabel.setText("Usunieto");
+		ShowReservations();
+	}
+	public void DeleteOpinion(){
+		Session session = Main.sessionFactory.openSession();
+		session.beginTransaction();
+
+		session.delete(tableViewOpinions.getSelectionModel().getSelectedItem());
+		session.getTransaction().commit();
+		session.close();
+		deleteOpinionLabel.setText("Usunieto");
+		ShowOpinions();
+	}
+
+	public void DeleteUser(){
+		Session session = Main.sessionFactory.openSession();
+		session.beginTransaction();
+
+		session.delete(choiceUsers.getSelectionModel().getSelectedItem());
+		session.getTransaction().commit();
+		session.close();
+		deleteUserLabel.setText("Usunieto uzytkownika " + choiceUsers.getSelectionModel().getSelectedItem().getName());
+		LoadUsers();
+
+	}
+	public void LoadUsers(){
+		Session session = Main.sessionFactory.openSession();
+		session.beginTransaction();
+
+		String hql = "FROM User";
+		Query query = session.createQuery(hql);
+
+		List<User> users = query.list();
+
+		choiceUsers.setItems(FXCollections.observableArrayList(users));
+
+		session.getTransaction().commit();
+		session.close();
+	}
+	public void DeleteRoomType(){
+		Session session = Main.sessionFactory.openSession();
+		session.beginTransaction();
+
+
+		session.delete(tableViewRoomType.getSelectionModel().getSelectedItem());
+		session.getTransaction().commit();
+		session.close();
+		deleteRoomTypeLabel.setText("Usunieto");
+		ShowRoomTypes();
+	}
+	public void DeleteReport(){
+		Session session = Main.sessionFactory.openSession();
+		session.beginTransaction();
+
+		session.delete(tableViewReports.getSelectionModel().getSelectedItem());
+		session.getTransaction().commit();
+		session.close();
+		deleteReportLabel.setText("Usunieto");
+		ShowReports();
+	}
+	public void DeleteRoom(){
+		Session session = Main.sessionFactory.openSession();
+		session.beginTransaction();
+
+		session.delete(tableViewRooms.getSelectionModel().getSelectedItem());
+		session.getTransaction().commit();
+		session.close();
+		deleteRoomLabel.setText("Usunieto");
+		ShowRooms();
+	}
 	public void ShowRooms(){
 		Session session = Main.sessionFactory.openSession();
 		session.beginTransaction();
@@ -206,6 +326,7 @@ public class AdminController implements Initializable {
 			return property;
 		});
 		tableViewRooms.setItems(FXCollections.observableArrayList(rooms));
+		session.close();
 	}
 
 	public void ShowReservations() {
@@ -245,7 +366,7 @@ public class AdminController implements Initializable {
 		});
 		tableViewReservation.setItems(FXCollections.observableArrayList(reservations));
 
-
+		session.close();
 	}
 
 	public void ShowRoomTypes() {
@@ -269,6 +390,7 @@ public class AdminController implements Initializable {
 				}
 		);
 		tableViewRoomType.setItems(FXCollections.observableArrayList(room_types));
+		session.close();
 	}
 
 	public void ShowOpinions() {
@@ -304,6 +426,7 @@ public class AdminController implements Initializable {
 		);
 		reportColumn.setCellValueFactory(new PropertyValueFactory<>("report"));
 		tableViewReports.setItems(FXCollections.observableArrayList(reports));
+		session.close();
 	}
 
 	public void ChangeAddress() {

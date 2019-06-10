@@ -16,6 +16,7 @@ public class Reservation {
 	private int reservationID;
 
 	@ManyToOne(fetch = FetchType.EAGER)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Room roomID;
 
 	@Column

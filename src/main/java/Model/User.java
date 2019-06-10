@@ -45,6 +45,7 @@ public class User implements Serializable {
 			name = "opinion_has_user",
 			joinColumns = {@JoinColumn(name = "fk_user")},
 			inverseJoinColumns = {@JoinColumn(name = "fk_opinion")})
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private List<Opinion> opinions = new ArrayList<>();
 
 	@ManyToMany(cascade = {
@@ -56,6 +57,7 @@ public class User implements Serializable {
 			name = "report_has_user",
 			joinColumns = {@JoinColumn(name = "fk_user")},
 			inverseJoinColumns = {@JoinColumn(name = "fk_report")})
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private List<Report> reports = new ArrayList<>();
 
 	@Column

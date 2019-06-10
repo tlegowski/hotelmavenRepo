@@ -1,5 +1,8 @@
 package Model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +26,7 @@ public class Room_type {
 	@JoinTable(name = "room_type_has_room",
 			joinColumns = {@JoinColumn(name = "fk_room_type")},
 			inverseJoinColumns = {@JoinColumn(name = "fk_room")})
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private List<Room> rooms = new ArrayList<>();
 
 	public int getRoomTypeID() {
