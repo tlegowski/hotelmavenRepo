@@ -1,6 +1,8 @@
 package Model;
 
 import org.hibernate.annotations.NaturalId;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -22,10 +24,12 @@ public class Reservation {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "customerID")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User customer;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "employeeID")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User employee;
 
 
@@ -71,17 +75,20 @@ public class Reservation {
 		this.employee = employee;
 	}
 
-	@Override
-	public String toString() {
-		return Integer.toString(reservationID);
-	}
-
 
 	public Reservation(Room roomID, LocalDate date, User customer, User employee) {
 		this.roomID = roomID;
 		this.date = date;
 		this.customer = customer;
 		this.employee = employee;
+	}
+
+	@Override
+	public String toString() {
+		return "Reservation{" +
+				"reservationID=" + reservationID +
+				", customer=" + customer +
+				'}';
 	}
 
 	//LocaldDate costam = LocalDate.of(2014, Month.JANUARY, 1);

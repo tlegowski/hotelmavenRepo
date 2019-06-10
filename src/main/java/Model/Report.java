@@ -17,15 +17,7 @@ public class Report {
 	@JoinColumn(name = "RESERVATION_ID")
 	private Reservation reservationID;
 
-	@ManyToMany(cascade = {
-			CascadeType.PERSIST,
-			CascadeType.MERGE
-	})
-
-	@JoinTable(
-			name = "report_has_user",
-			joinColumns = {@JoinColumn(name = "fk_report")},
-			inverseJoinColumns = {@JoinColumn(name = "fk_user")})
+	@ManyToMany(mappedBy = "reports")
 	private List<User> users = new ArrayList<>();
 
 

@@ -24,4 +24,28 @@ public class Room_type {
 			joinColumns = {@JoinColumn(name = "fk_room_type")},
 			inverseJoinColumns = {@JoinColumn(name = "fk_room")})
 	private List<Room> rooms = new ArrayList<>();
+
+	public int getRoomTypeID() {
+		return roomTypeID;
+	}
+
+	public void setRoomTypeID(int roomTypeID) {
+		this.roomTypeID = roomTypeID;
+	}
+
+	public String getDescribe() {
+		return describe;
+	}
+
+	public void setDescribe(String describe) {
+		this.describe = describe;
+	}
+
+	public List<Room> getRooms() {
+		return rooms;
+	}
+
+	public void setRooms(List<Room> rooms) {
+		this.rooms = rooms;
+	}
 }

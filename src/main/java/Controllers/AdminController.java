@@ -1,6 +1,7 @@
 package Controllers;
 
 import Model.*;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,7 +9,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.hibernate.HibernateException;
-import org.hibernate.LazyInitializationException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
@@ -19,14 +19,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class AdminController implements Initializable {
-
-/*
-	@FXML
-	private ChoiceBox<UserType> choiceBox;
-
-	@FXML
-	private ChoiceBox<User> choiceUsers;
-*/
 
 	@FXML
 	private TextField nameTextField;
@@ -54,15 +46,6 @@ public class AdminController implements Initializable {
 
 	@FXML
 	private ChoiceBox<UserType> choiceUserType;
-
-	@FXML
-	private ChoiceBox<User> choiceUsersDelete;
-
-	@FXML
-	private Button deleteUserButton;
-
-	@FXML
-	private Label deleteInfoLabel;
 
 	@FXML
 	private TextField changeCityTextField;
@@ -98,7 +81,7 @@ public class AdminController implements Initializable {
 	private TableColumn<Report, Integer> idReportColumn;
 
 	@FXML
-	private TableColumn<Report, Integer> reservationIdColumn;
+	private TableColumn<Report, String> reservationIdColumn;
 
 	@FXML
 	private TableColumn<Report, String> reportColumn;
@@ -129,6 +112,19 @@ public class AdminController implements Initializable {
 
 	@FXML
 	private TableColumn<Room_type, String> describeRoomTypeColumn;
+
+	@FXML
+	private TableView<Room> tableViewRooms;
+
+	@FXML
+	private TableColumn<Room, String> idRoomColumn;
+
+	@FXML
+	private TableColumn<Room, String> numberRoomColumn;
+
+	@FXML
+	private TableColumn<Room, String> describeRoomColumn;
+
 
 
 	public void RegisterButton(ActionEvent event) {
@@ -173,40 +169,86 @@ public class AdminController implements Initializable {
 		Query query = session.createQuery(hql);
 		List<User> users = query.list();
 
-		choiceUsersDelete.setItems(FXCollections.observableArrayList(users));
-		deleteUserButton.setOnAction(event -> DeleteUser());
 		choiceUserForAddress.setItems(FXCollections.observableArrayList(users));
 		changeAddressButton.setOnAction(event -> ChangeAddress());
 
 		ShowOpinions();
 		ShowReports();
-		//ShowReservations();
+		ShowReservations();
 		ShowRoomTypes();
+		ShowRooms();
 		session.close();
 	}
 
-
-	//problem z wyswietlaniem ID
-	/*public void ShowReservations(){
+	public void ShowRooms(){
 		Session session = Main.sessionFactory.openSession();
 		session.beginTransaction();
 
-		String hql = "FROM Opinion";
+		String hql = "FROM Room";
+		Query query = session.createQuery(hql);
+		List<Room> rooms = query.list();
+
+		idRoomColumn.setCellValueFactory(Raport -> {
+			SimpleObjectProperty property = new SimpleObjectProperty();
+			property.set(Raport.getValue().getId());
+			return property;
+		});
+
+		numberRoomColumn.setCellValueFactory(Raport -> {
+			SimpleObjectProperty property = new SimpleObjectProperty();
+			property.set(Raport.getValue().getNumber());
+			return property;
+		});
+
+		describeRoomColumn.setCellValueFactory(Raport -> {
+			SimpleObjectProperty property = new SimpleObjectProperty();
+			property.set(Raport.getValue().getDescribe());
+			return property;
+		});
+		tableViewRooms.setItems(FXCollections.observableArrayList(rooms));
+	}
+
+	public void ShowReservations() {
+		Session session = Main.sessionFactory.openSession();
+		session.beginTransaction();
+
+		String hql = "FROM Reservation";
 		Query query = session.createQuery(hql);
 		List<Reservation> reservations = query.list();
 
-		idReservationColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+		idReservationColumn.setCellValueFactory(Raport -> {
+			SimpleObjectProperty property = new SimpleObjectProperty();
+			property.set(Raport.getValue().getReservationID());
+			return property;
+		});
 		dateReservationColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-		clientReservationColumn.setCellValueFactory(new PropertyValueFactory<>("customer"));
-		employeeReservationColumn.setCellValueFactory(new PropertyValueFactory<>("employee"));
-		roomsReservationColumn.setCellValueFactory(new PropertyValueFactory<>("roomID"));
 
+		clientReservationColumn.setCellValueFactory(Raport -> {
+			SimpleObjectProperty property = new SimpleObjectProperty();
+			property.set(Raport.getValue().getCustomer().getName() + " " +
+					Raport.getValue().getCustomer().getSurname());
+			return property;
+		});
+
+		employeeReservationColumn.setCellValueFactory(Raport ->{
+			SimpleObjectProperty property = new SimpleObjectProperty();
+			property.set(Raport.getValue().getEmployee().getName() + " " +
+					Raport.getValue().getEmployee().getSurname());
+			return property;
+		});
+
+		roomsReservationColumn.setCellValueFactory(Raport ->{
+			SimpleObjectProperty property = new SimpleObjectProperty();
+			property.set("Numer: (" + Raport.getValue().getRoomID().getNumber() + ") " +
+					Raport.getValue().getRoomID().getDescribe());
+			return property;
+		});
 		tableViewReservation.setItems(FXCollections.observableArrayList(reservations));
 
 
-	}*/
+	}
 
-	public void ShowRoomTypes(){
+	public void ShowRoomTypes() {
 		Session session = Main.sessionFactory.openSession();
 		session.beginTransaction();
 
@@ -214,11 +256,22 @@ public class AdminController implements Initializable {
 		Query query = session.createQuery(hql);
 		List<Room_type> room_types = query.list();
 
-		idRoomTypeColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-		describeRoomTypeColumn.setCellValueFactory(new PropertyValueFactory<>("describe"));
+		idRoomTypeColumn.setCellValueFactory(Raport -> {
+					SimpleObjectProperty property = new SimpleObjectProperty();
+					property.setValue(Raport.getValue().getRoomTypeID());
+					return property;
+				}
+		);
+		describeRoomTypeColumn.setCellValueFactory(Raport -> {
+					SimpleObjectProperty property = new SimpleObjectProperty();
+					property.setValue(Raport.getValue().getDescribe());
+					return property;
+				}
+		);
 		tableViewRoomType.setItems(FXCollections.observableArrayList(room_types));
 	}
-	public void ShowOpinions(){
+
+	public void ShowOpinions() {
 		Session session = Main.sessionFactory.openSession();
 		session.beginTransaction();
 
@@ -233,7 +286,7 @@ public class AdminController implements Initializable {
 		session.close();
 	}
 
-	public void ShowReports(){
+	public void ShowReports() {
 		Session session = Main.sessionFactory.openSession();
 		session.beginTransaction();
 
@@ -242,17 +295,24 @@ public class AdminController implements Initializable {
 		List<Report> reports = query.list();
 
 		idReportColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-		reservationIdColumn.setCellValueFactory(new PropertyValueFactory<>("reservationID"));
+		reservationIdColumn.setCellValueFactory(
+				Raport -> {
+					SimpleObjectProperty property = new SimpleObjectProperty();
+					property.setValue("Nr pok: " + Raport.getValue().getReservationID().getRoomID().getNumber() + " Data rez: " + Raport.getValue().getReservationID().getDate());
+					return property;
+				}
+		);
 		reportColumn.setCellValueFactory(new PropertyValueFactory<>("report"));
 		tableViewReports.setItems(FXCollections.observableArrayList(reports));
 	}
-	public void ChangeAddress(){
+
+	public void ChangeAddress() {
 		Session session = Main.sessionFactory.openSession();
 		session.beginTransaction();
 
 		Address address = choiceUserForAddress.getValue().getIdAddress();
 
-		try{
+		try {
 			address.setCity(changeCityTextField.getText());
 			address.setStreet(changeStreetTextField.getText());
 			address.setApartment(Integer.parseInt(changeApartmTextField.getText()));
@@ -260,33 +320,14 @@ public class AdminController implements Initializable {
 			session.update(address);
 			session.getTransaction().commit();
 			changeAddressInfoLabel.setText("Zmieniono adres");
-		}catch (HibernateException e){
+		} catch (HibernateException e) {
 			e.printStackTrace();
-		}catch (NumberFormatException e){
+		} catch (NumberFormatException e) {
 			changeAddressInfoLabel.setText("Numer mieszkania musi byc liczba");
-			e.printStackTrace();
-		}finally {
-			session.close();
-		}
-	}
-	public void DeleteUser() {
-		Session session = Main.sessionFactory.openSession();
-		session.beginTransaction();
-		Address address = choiceUsersDelete.getValue().getIdAddress();
-		List<Opinion> opinion = choiceUsersDelete.getValue().getOpinions();
-		List<Report> reports = choiceUsersDelete.getValue().getReports();
-
-		try {
-			User user = choiceUsersDelete.getValue();
-			session.delete(opinion);
-			session.delete(reports);
-			session.delete(user);
-
-		} catch (LazyInitializationException e) {
 			e.printStackTrace();
 		} finally {
 			session.close();
 		}
-		deleteInfoLabel.setText("Usunieto uzytkownika");
 	}
+
 }

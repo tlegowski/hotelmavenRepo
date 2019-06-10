@@ -1,6 +1,7 @@
 package Model;
 
 public enum UserType {
+
 	CUSTOMER(
 			Names.CUSTOMER_NAME
 	),

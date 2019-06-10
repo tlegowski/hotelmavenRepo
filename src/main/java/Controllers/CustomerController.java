@@ -96,6 +96,9 @@ public class CustomerController implements Initializable {
 	@FXML
 	private TextField reportTextField;
 
+	@FXML
+	private Label reportInfoLabel;
+
 	private User customer;
 
 /*	public void show() {
@@ -110,16 +113,16 @@ public class CustomerController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		Platform.runLater(() ->
 				helloName.setText("Witaj " + customer.getName()));
-				sendOpinionButton.setOnAction(event -> SaveOpinion());
-				changeNameButton.setOnAction(event -> ChangeName());
-				changeAddressButton.setOnAction(event -> ChangeAddress());
-				checkReservationButton.setOnAction(event -> CheckReservation());
-				sliderOpinion.setSnapToTicks(true);
-				idRoomColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-				describeColumn.setCellValueFactory(new PropertyValueFactory<>("describe"));
-				numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
-				reservationButton.setOnAction(event -> MakeReservation());
-				reportButton.setOnAction(event -> SaveReport());
+		sendOpinionButton.setOnAction(event -> SaveOpinion());
+		changeNameButton.setOnAction(event -> ChangeName());
+		changeAddressButton.setOnAction(event -> ChangeAddress());
+		checkReservationButton.setOnAction(event -> CheckReservation());
+		sliderOpinion.setSnapToTicks(true);
+		idRoomColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+		describeColumn.setCellValueFactory(new PropertyValueFactory<>("describe"));
+		numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
+		reservationButton.setOnAction(event -> MakeReservation());
+		reportButton.setOnAction(event -> SaveReport());
 
 	}
 
@@ -289,10 +292,12 @@ public class CustomerController implements Initializable {
 			if (true) {
 				Report report = new Report(reportTextField.getText());
 				report.getUsers().add(customer);
-
-
 				session.save(report);
 				session.getTransaction().commit();
+				reportInfoLabel.setText("Zgloszono");
+				reportTextField.setDisable(true);
+				reportButton.setDisable(true);
+
 			} else {
 
 			}

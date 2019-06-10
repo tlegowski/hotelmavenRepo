@@ -10,7 +10,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EmployeeController">
    <children>
       <TabPane layoutX="37.0" layoutY="25.0" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -21,12 +20,12 @@
                      <children>
                         <TableView fx:id="tableViewReservation" layoutX="14.0" layoutY="157.0" prefHeight="200.0" prefWidth="259.0">
                           <columns>
-                            <TableColumn fx:id="idReservationColumn" prefWidth="75.0" text="ID" />
-                            <TableColumn fx:id="dateReservationColumn" prefWidth="183.0" text="Data" />
+                            <TableColumn fx:id="dateReservationColumn" prefWidth="258.0" text="Data" />
                           </columns>
                         </TableView>
                         <Label layoutX="19.0" layoutY="115.0" prefHeight="32.0" prefWidth="180.0" text="Twoje dni pracy:" />
-                        <Label fx:id="helloLabel" layoutX="19.0" layoutY="24.0" prefHeight="51.0" prefWidth="171.0" text="Czesc " />
+                        <Label fx:id="helloLabel" layoutX="19.0" layoutY="24.0" prefHeight="51.0" prefWidth="171.0" text=" " />
+                        <Label fx:id="INFORMACJA" layoutX="310.0" layoutY="67.0" prefHeight="162.0" prefWidth="294.0" text=" " />
                      </children>
                   </AnchorPane>
             </content>

@@ -1,27 +1,28 @@
 package Controllers;
 
-import Model.Address;
-import Model.Main;
-import Model.Reservation;
-import Model.User;
+import Model.*;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 public class EmployeeController implements Initializable {
 
 	@FXML
 	private TableView<Reservation> tableViewReservation;
-
-	@FXML
-	private TableColumn<Reservation, Integer> idReservationColumn;
 
 	@FXML
 	private TableColumn<Reservation, LocalDate> dateReservationColumn;
@@ -64,20 +65,52 @@ public class EmployeeController implements Initializable {
 
 	private User employee;
 
-	public void setEmployee(User user){
+	public void setEmployee(User user) {
 		employee = user;
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		Platform.runLater(() ->
-			 	helloLabel.setText("Witaj " + employee.getName()));
-				changeNameButton.setOnAction(event -> ChangeName());
-				changeAddressButton.setOnAction(event -> ChangeAddress());
+		Platform.runLater(() -> {
+			helloLabel.setText("Witaj " + employee.getName());
+			changeNameButton.setOnAction(event -> ChangeName());
+			changeAddressButton.setOnAction(event -> ChangeAddress());
 
+			dateReservationColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+			ReadReservations();
+		});
 	}
 
-	public void ChangeName(){
+
+	public void ReadReservations() {
+		Session session = Main.sessionFactory.openSession();
+		session.beginTransaction();
+
+		String hql = "FROM Reservation";
+		Query query = session.createQuery(hql);
+
+		List<Reservation> reservations = query.list();
+		Set<Reservation> busyReservations = new HashSet<>();
+
+
+		for(Reservation re :reservations){
+			if(re.getEmployee().getUserID() == employee.getUserID()){
+				busyReservations.add(re);
+			}
+		}
+		tableViewReservation.setItems(FXCollections.observableArrayList(busyReservations));
+
+
+
+		/*if(!reservations.isEmpty()){
+			System.out.println(reservations.get(0));
+		}else
+			System.out.println("nie znaleziono");*/
+		//List<Reservation> reservations = query.list();
+		//tableViewReservation.setItems(FXCollections.observableArrayList());
+	}
+
+	public void ChangeName() {
 		Session session = Main.sessionFactory.openSession();
 		session.beginTransaction();
 

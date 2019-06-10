@@ -68,6 +68,7 @@
                      <children>
                         <TextField fx:id="reportTextField" layoutX="144.0" layoutY="62.0" prefHeight="116.0" prefWidth="307.0" promptText=" " />
                         <Button fx:id="reportButton" layoutX="215.0" layoutY="238.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="166.0" text="Zgloś" />
+                        <Label fx:id="reportInfoLabel" contentDisplay="TOP" layoutX="198.0" layoutY="309.0" prefHeight="67.0" prefWidth="201.0" text=" " />
                      </children>
                   </AnchorPane>
               </content>

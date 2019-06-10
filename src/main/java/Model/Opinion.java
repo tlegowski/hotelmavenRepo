@@ -1,5 +1,8 @@
 package Model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,14 +18,7 @@ public class Opinion {
 	@Column
 	private String opinion;
 
-	@ManyToMany(cascade = {
-			CascadeType.PERSIST,
-			CascadeType.MERGE
-	})
-	@JoinTable(
-			name = "opinion_has_user",
-			joinColumns = {@JoinColumn(name = "fk_opinion")},
-			inverseJoinColumns = {@JoinColumn(name = "fk_user")})
+	@ManyToMany(mappedBy = "opinions")
 	private List<User> users = new ArrayList<>();
 
 	public String getOpinion() {

@@ -2,6 +2,8 @@ package Model;
 
 
 import org.hibernate.annotations.NaturalId;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -32,12 +34,28 @@ public class User implements Serializable {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_address")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Address idAddress;
 
-	@ManyToMany(mappedBy = "users")
+	@ManyToMany(cascade = {
+			CascadeType.PERSIST,
+			CascadeType.MERGE
+	})
+	@JoinTable(
+			name = "opinion_has_user",
+			joinColumns = {@JoinColumn(name = "fk_user")},
+			inverseJoinColumns = {@JoinColumn(name = "fk_opinion")})
 	private List<Opinion> opinions = new ArrayList<>();
 
-	@ManyToMany(mappedBy = "users")
+	@ManyToMany(cascade = {
+			CascadeType.PERSIST,
+			CascadeType.MERGE
+	})
+
+	@JoinTable(
+			name = "report_has_user",
+			joinColumns = {@JoinColumn(name = "fk_user")},
+			inverseJoinColumns = {@JoinColumn(name = "fk_report")})
 	private List<Report> reports = new ArrayList<>();
 
 	@Column
