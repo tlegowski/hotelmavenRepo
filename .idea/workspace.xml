@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b4a5eb82-1f92-4173-aff1-dea5736419a5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Opinion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Opinion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Report.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Reservation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Room_type.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Room_type.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/admin_stage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/admin_stage.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -27,8 +22,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/AdminController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="232" column="51" lean-forward="true" selection-start-line="232" selection-start-column="51" selection-end-line="232" selection-end-column="51" />
+            <state relative-caret-position="383">
+              <caret line="335" column="36" lean-forward="true" selection-start-line="335" selection-start-column="36" selection-end-line="335" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#0#9#1" expanded="true" />
@@ -127,8 +122,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="358" />
-    <option name="y" value="-20" />
+    <option name="x" value="992" />
+    <option name="y" value="-21" />
     <option name="width" value="823" />
     <option name="height" value="1057" />
   </component>
@@ -281,12 +276,12 @@
       <workItem from="1559660751871" duration="13852000" />
       <workItem from="1559815657631" duration="34277000" />
       <workItem from="1560098914727" duration="3931000" />
-      <workItem from="1560191738764" duration="7620000" />
+      <workItem from="1560191738764" duration="8742000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="126832000" />
+    <option name="totallyTimeSpent" value="127954000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -751,8 +746,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/AdminController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="232" column="51" lean-forward="true" selection-start-line="232" selection-start-column="51" selection-end-line="232" selection-end-column="51" />
+        <state relative-caret-position="383">
+          <caret line="335" column="36" lean-forward="true" selection-start-line="335" selection-start-column="36" selection-end-line="335" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#0#9#1" expanded="true" />

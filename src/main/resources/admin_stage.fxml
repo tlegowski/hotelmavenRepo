@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -47,17 +46,16 @@
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab text="Wyswietl opinie">
+            <Tab text="Opinie">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="tableViewOpinions" layoutX="74.0" layoutY="47.0" prefHeight="317.0" prefWidth="986.0" AnchorPane.bottomAnchor="54.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="tableViewOpinions" layoutX="74.0" layoutY="47.0" prefHeight="309.0" prefWidth="986.0" AnchorPane.bottomAnchor="62.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
                             <TableColumn fx:id="idOpinionColumn" prefWidth="75.0" text="ID" />
                             <TableColumn fx:id="opinionColumn" prefWidth="75.0" text="Opinia" />
                           </columns>
                         </TableView>
-                        <ButtonBar layoutX="510.0" layoutY="316.0" prefHeight="40.0" prefWidth="75.0" />
                         <Label fx:id="deleteOpinionLabel" layoutX="625.0" layoutY="336.0" prefHeight="17.0" prefWidth="180.0" text=" " />
                         <Button fx:id="deleteOpinionButton" layoutX="474.0" layoutY="324.0" mnemonicParsing="false" text="Usun" />
                      </children>
@@ -104,14 +102,14 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="tableViewRoomType" layoutY="7.0" prefHeight="311.0" prefWidth="986.0" AnchorPane.bottomAnchor="53.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="7.0">
+                        <TableView fx:id="tableViewRoomType" layoutY="7.0" prefHeight="297.0" prefWidth="986.0" AnchorPane.bottomAnchor="67.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="7.0">
                           <columns>
                             <TableColumn fx:id="idRoomTypeColumn" prefWidth="75.0" text="ID" />
                             <TableColumn fx:id="describeRoomTypeColumn" prefWidth="910.0" text="Opis" />
                           </columns>
                         </TableView>
                         <Label fx:id="deleteRoomTypeLabel" layoutX="642.0" layoutY="328.0" prefHeight="17.0" prefWidth="225.0" text=" " />
-                        <Button fx:id="deleteRoomTypeButton" layoutX="467.0" layoutY="324.0" mnemonicParsing="false" text="Usun" />
+                        <Button fx:id="deleteRoomTypeButton" layoutX="472.0" layoutY="333.0" mnemonicParsing="false" text="Usun" />
                      </children>
                   </AnchorPane>
               </content>

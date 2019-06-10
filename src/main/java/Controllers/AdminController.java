@@ -214,13 +214,17 @@ public class AdminController implements Initializable {
 		deleteUserButton.setOnAction(event -> DeleteUser());
 		deleteOpinionButton.setOnAction(event -> DeleteOpinion());
 		deleteReservationButton.setOnAction(event -> DeleteReservation());
+		UpdateTables();
+		session.close();
+	}
+
+	public void UpdateTables(){
 		ShowOpinions();
 		ShowReports();
 		ShowReservations();
 		ShowRoomTypes();
 		ShowRooms();
 		LoadUsers();
-		session.close();
 	}
 
 	public void DeleteReservation(){
@@ -231,7 +235,7 @@ public class AdminController implements Initializable {
 		session.getTransaction().commit();
 		session.close();
 		deleteReservationLabel.setText("Usunieto");
-		ShowReservations();
+		UpdateTables();
 	}
 	public void DeleteOpinion(){
 		Session session = Main.sessionFactory.openSession();
@@ -241,7 +245,7 @@ public class AdminController implements Initializable {
 		session.getTransaction().commit();
 		session.close();
 		deleteOpinionLabel.setText("Usunieto");
-		ShowOpinions();
+		UpdateTables();
 	}
 
 	public void DeleteUser(){
@@ -252,7 +256,7 @@ public class AdminController implements Initializable {
 		session.getTransaction().commit();
 		session.close();
 		deleteUserLabel.setText("Usunieto uzytkownika " + choiceUsers.getSelectionModel().getSelectedItem().getName());
-		LoadUsers();
+		UpdateTables();
 
 	}
 	public void LoadUsers(){
@@ -278,7 +282,7 @@ public class AdminController implements Initializable {
 		session.getTransaction().commit();
 		session.close();
 		deleteRoomTypeLabel.setText("Usunieto");
-		ShowRoomTypes();
+		UpdateTables();
 	}
 	public void DeleteReport(){
 		Session session = Main.sessionFactory.openSession();
@@ -288,7 +292,7 @@ public class AdminController implements Initializable {
 		session.getTransaction().commit();
 		session.close();
 		deleteReportLabel.setText("Usunieto");
-		ShowReports();
+		UpdateTables();
 	}
 	public void DeleteRoom(){
 		Session session = Main.sessionFactory.openSession();
@@ -298,7 +302,7 @@ public class AdminController implements Initializable {
 		session.getTransaction().commit();
 		session.close();
 		deleteRoomLabel.setText("Usunieto");
-		ShowRooms();
+		UpdateTables();
 	}
 	public void ShowRooms(){
 		Session session = Main.sessionFactory.openSession();
