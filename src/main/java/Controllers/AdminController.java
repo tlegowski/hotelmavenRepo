@@ -164,6 +164,31 @@ public class AdminController implements Initializable {
 	@FXML
 	private Label deleteReservationLabel;
 
+	@FXML
+	private TableView<User> tableViewUsers;
+
+	@FXML
+	private TableColumn<User, String> idUserColumn;
+
+	@FXML
+	private TableColumn<User, String> nameColumn;
+
+	@FXML
+	private TableColumn<User, String> surnameColumn;
+
+	@FXML
+	private TableColumn<User, String> loginColumn;
+
+	@FXML
+	private TableColumn<User, String> passwordColumn;
+
+	@FXML
+	private TableColumn<User, String> userTypeColumn;
+
+	@FXML
+	private TableColumn<User, Integer> idAddressColumn;
+
+
 	public void RegisterButton(ActionEvent event) {
 		Session session = Main.sessionFactory.openSession();
 		session.beginTransaction();
@@ -225,6 +250,61 @@ public class AdminController implements Initializable {
 		ShowRoomTypes();
 		ShowRooms();
 		LoadUsers();
+		ShowUsers();
+	}
+
+	public void ShowUsers(){
+		Session session = Main.sessionFactory.openSession();
+		session.beginTransaction();
+
+
+		String hql = "FROM User";
+		Query query = session.createQuery(hql);
+		List<User> users = query.list();
+
+		idUserColumn.setCellValueFactory(Raport -> {
+			SimpleObjectProperty property = new SimpleObjectProperty();
+			property.set(Raport.getValue().getUserID());
+			return property;
+		});
+
+		nameColumn.setCellValueFactory(Raport -> {
+			SimpleObjectProperty property = new SimpleObjectProperty();
+			property.set(Raport.getValue().getName());
+			return property;
+		});
+
+		surnameColumn.setCellValueFactory(Raport -> {
+			SimpleObjectProperty property = new SimpleObjectProperty();
+			property.set(Raport.getValue().getSurname());
+			return property;
+		});
+
+		loginColumn.setCellValueFactory(Raport -> {
+			SimpleObjectProperty property = new SimpleObjectProperty();
+			property.set(Raport.getValue().getLogin());
+			return property;
+		});
+
+		passwordColumn.setCellValueFactory(Raport -> {
+			SimpleObjectProperty property = new SimpleObjectProperty();
+			property.set(Raport.getValue().getPassword());
+			return property;
+		});
+
+		userTypeColumn.setCellValueFactory(Raport -> {
+			SimpleObjectProperty property = new SimpleObjectProperty();
+			property.set(Raport.getValue().getUserType());
+			return property;
+		});
+
+		idAddressColumn.setCellValueFactory(Raport -> {
+			SimpleObjectProperty property = new SimpleObjectProperty();
+			property.set(Raport.getValue().getIdAddress().getId());
+			return property;
+		});
+		tableViewUsers.setItems(FXCollections.observableArrayList(users));
+		session.close();
 	}
 
 	public void DeleteReservation(){

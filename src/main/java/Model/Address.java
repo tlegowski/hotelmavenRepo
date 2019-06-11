@@ -51,4 +51,11 @@ public class Address {
 		this.apartment = apartment;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 }

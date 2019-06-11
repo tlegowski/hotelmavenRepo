@@ -91,6 +91,4 @@ public class Reservation {
 				", customer=" + customer +
 				'}';
 	}
-
-	//LocaldDate costam = LocalDate.of(2014, Month.JANUARY, 1);
 }
